@@ -5,8 +5,8 @@ import thunk from 'redux-thunk';
 import root from './rootReducer';
 
 export default function configureStore(history) {
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
-    compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const enhancer = composeEnhancers(
     applyMiddleware(thunk, routerMiddleware(history))
   );

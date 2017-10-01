@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Loader from 'react-loader';
+import BureauDataWidget from '../components/BureauDataWidget';
+import ProposalWidget from '../components/ProposalWidget';
 
-import "../assets/stylesheets/BureauPage.scss"
+import '../assets/stylesheets/BureauPage.scss';
 
-export class BureauPage extends Component {}
+export class BureauPage extends Component {
+  render() {
+    return (
+      <div>
+        <BureauDataWidget />
+        <ProposalWidget />
+      </div>
+    );
+  }
+}
 
-BureauPage.propTypes = {}
+BureauPage.propTypes = {};
 
 function mapStateToProps(state) {
-  return {
-    
-  }
+  return {};
 }
 
 export default connect(mapStateToProps)(BureauPage);

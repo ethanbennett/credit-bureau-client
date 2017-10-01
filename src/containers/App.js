@@ -6,7 +6,6 @@ import { Route, withRouter } from 'react-router';
 import { addItem } from '../store/items/actions';
 import Header from '../components/Header';
 import ListPage from '../components/ListPage';
-import Home from '../components/Home';
 import BureauPage from '../containers/BureauPage';
 import '../assets/stylesheets/App.scss';
 

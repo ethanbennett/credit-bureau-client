@@ -33,7 +33,6 @@ class ListPage extends Component {
       <Card className="card">
         <CardTitle title="List Example" subtitle="A head start..." />
         <CardText>
-
           <div className="list__input">
             <TextField
               id="list__input-field"
@@ -51,10 +50,7 @@ class ListPage extends Component {
             />
           </div>
 
-          <List className="list__items">
-            {this.renderItems()}
-          </List>
-
+          <List className="list__items">{this.renderItems()}</List>
         </CardText>
       </Card>
     );

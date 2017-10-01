@@ -15,20 +15,17 @@ const Home = props => {
       />
       <Divider />
       <CardText>
-
         <div className="home__feature-title">React + Redux</div>
         <ul>
           <li>
             <a href="https://github.com/facebookincubator/create-react-app">
               create-react-app
-            </a>
-            {' '}
+            </a>{' '}
             - CLI tool for React apps. Configures Webpack, Babel and more.
           </li>
           <li>
-            <a href="https://github.com/reactjs/redux">Redux</a>
-            {' '}
-            - manages complex state.
+            <a href="https://github.com/reactjs/redux">Redux</a> - manages
+            complex state.
           </li>
         </ul>
 
@@ -37,16 +34,12 @@ const Home = props => {
         <div className="home__feature-title">Testing</div>
         <ul>
           <li>
-            <a href="http://facebook.github.io/jest/">
-              Jest
-            </a>
-            {' '}
-            - JavaScript testing library built on Jasmine.
+            <a href="http://facebook.github.io/jest/">Jest</a> - JavaScript
+            testing library built on Jasmine.
           </li>
           <li>
-            <a href="http://airbnb.io/enzyme/">Enzyme</a>
-            {' '}
-            - React component testing library.
+            <a href="http://airbnb.io/enzyme/">Enzyme</a> - React component
+            testing library.
           </li>
         </ul>
 
@@ -57,17 +50,13 @@ const Home = props => {
           <li>
             <a href="https://reacttraining.com/react-router/">
               React Router v4
-            </a>
-            {' '}
+            </a>{' '}
             - declarative React routes.
           </li>
           <li>
-            <a
-              href="https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux"
-            >
+            <a href="https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux">
               react-router-redux
-            </a>
-            {' '}
+            </a>{' '}
             - syncs up routing state with Redux.
           </li>
         </ul>
@@ -77,18 +66,11 @@ const Home = props => {
         <div className="home__feature-title">Styling</div>
         <ul>
           <li>
-            <a href="https://react-md.mlaursen.com/">
-              react-md
-            </a>
-            {' '}
-            - material design component library for React.
+            <a href="https://react-md.mlaursen.com/">react-md</a> - material
+            design component library for React.
           </li>
           <li>
-            <a href="http://sass-lang.com/">
-              Sass
-            </a>
-            {' '}
-            - css preprocessor.
+            <a href="http://sass-lang.com/">Sass</a> - css preprocessor.
           </li>
         </ul>
 
@@ -97,30 +79,22 @@ const Home = props => {
         <div className="home__feature-title">Tooling</div>
         <ul>
           <li>
-            <a href="https://github.com/prettier/prettier/">
-              Prettier
-            </a>
-            {' '}
-            - JavaScript formatter; runs prior to git commit.
+            <a href="https://github.com/prettier/prettier/">Prettier</a> -
+            JavaScript formatter; runs prior to git commit.
           </li>
           <li>
             <a href="https://webpack.js.org/concepts/hot-module-replacement">
               Hot Module Replacement (HMR)
-            </a>
-            {' '}
+            </a>{' '}
             - updates app without refreshing or losing Redux state.
           </li>
           <li>
-            <a
-              href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en"
-            >
+            <a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">
               Redux DevTools - Chrome extension
-            </a>
-            {' '}
+            </a>{' '}
             - view Redux store within Chrome debugging tools.
           </li>
         </ul>
-
       </CardText>
     </Card>
   );
