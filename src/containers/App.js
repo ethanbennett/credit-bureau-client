@@ -7,6 +7,7 @@ import { addItem } from '../store/items/actions';
 import Header from '../components/Header';
 import ListPage from '../components/ListPage';
 import Home from '../components/Home';
+import BureauPage from '../containers/BureauPage';
 import '../assets/stylesheets/App.scss';
 
 export class App extends Component {
@@ -19,7 +20,7 @@ export class App extends Component {
       <div className="app">
         <Header />
 
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={BureauPage} />
         <Route
           path="/list"
           component={() => {
