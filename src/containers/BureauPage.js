@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loader from 'react-loader';
 
-export class BureauPage extends Component {
+export class BureauPage extends Component {}
 
-}
-// Test
 BureauPage.propTypes = {}
 
 function mapStateToProps(state) {
-  return {
-
-  }
+  return {}
 }
 
 export default connect(mapStateToProps)(BureauPage);
