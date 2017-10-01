@@ -6,7 +6,7 @@ import Loader from 'react-loader';
 export class BureauPage extends Component {
 
 }
-
+// Here is a test
 BureauPage.propTypes = {}
 
 function mapStateToProps(state) {
