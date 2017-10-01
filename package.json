@@ -42,8 +42,8 @@
     "test:once": "CI=true react-scripts test --env=jsdom"
   },
   "lint-staged": {
-    "{src,__{test|mocks}__}/**/*.js": [
-      "prettier --single-quote --trailing-comma es5 --write",
+    "*.js": [
+      "prettier --single-quote --trailing-comma es5 --write '{app,__{tests,mocks}__}/**/*.js'",
       "git add"
     ]
   }
