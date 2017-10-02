@@ -8,10 +8,10 @@ import '../../src/assets/stylesheets/ProposalWidget.scss';
 const ProposalWidget = () => {
   return (
     <div>
-      <Card className="proposal-widget__card">
+      <Card className="widget__card">
         <CardTitle title="Proposals" />
         <CardText>
-          <p>Here's where the Proposals will go</p>
+          <p className="widget__text">Here's where the Proposals will go</p>
         </CardText>
       </Card>
     </div>

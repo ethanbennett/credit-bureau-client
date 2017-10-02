@@ -8,10 +8,10 @@ import '../../src/assets/stylesheets/BureauDataWidget.scss';
 const BureauDataWidget = () => {
   return (
     <div>
-      <Card className="bureau-data-widget__card">
+      <Card className="widget__card">
         <CardTitle title="Bureau Data" />
         <CardText>
-          <p>Here's where the Bureau Stats will go</p>
+          <p className="widget__text">Here's where the Bureau Stats will go</p>
         </CardText>
       </Card>
     </div>

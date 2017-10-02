@@ -1,5 +1,14 @@
 .header {
   text-align: center;
+  border-bottom: 1px solid #caebf2;
+}
+
+.md-toolbar--themed {
+  background-color: white !important;
+}
+
+.header__title {
+  cursor: pointer;
 }
 
 .header__body {
@@ -22,3 +31,12 @@
   to { transform: rotate(360deg); }
 }
 
+.header__link {
+  align-self: center;
+  padding: 10px 15px 8px;
+  color: #ff3b3f;
+
+  &:hover{
+    color: #cc2f32;
+  }
+}

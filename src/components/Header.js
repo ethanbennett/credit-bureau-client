@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-md/lib/Buttons';
 import Toolbar from 'react-md/lib/Toolbars';
+import Paper from 'react-md/lib/Papers';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import '../assets/stylesheets/Header.scss';
 
@@ -15,21 +17,27 @@ export class Header extends Component {
     //  2. Use `push` from 'react-router-redux', i.e. dispatch(push(route));
     const { history } = this.props;
 
+    const renderTitle = () => {
+      return (
+        <div className="header__title" onClick={() => history.push('/')}>
+          Blockchain Credit Bureau
+        </div>
+      );
+    };
+
     const actions = [
-      <Button
-        flat
-        label="Organizations"
-        onClick={() => history.push('/mfis')}
-      />,
-      <Button icon key="home" onClick={() => history.push('/')}>
-        home
-      </Button>,
+      <Link className="header__link" to={'/clients'}>
+        CLIENTS
+      </Link>,
+      <Link className="header__link" to={'/marketplace'}>
+        MARKETPLACE
+      </Link>,
     ];
 
     return (
-      <div className="header">
-        <Toolbar actions={actions} themed title="Blockchain Credit Bureau" />
-      </div>
+      <Paper className="header">
+        <Toolbar actions={actions} themed title={renderTitle()} />
+      </Paper>
     );
   }
 }
