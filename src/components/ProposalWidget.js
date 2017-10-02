@@ -9,9 +9,14 @@ const ProposalWidget = () => {
   return (
     <div>
       <Card className="widget__card">
-        <CardTitle title="Proposals" />
+        <CardTitle
+          title="Proposals"
+          subtitle="Blockchain-Based Governance for the Bureau"
+        />
         <CardText>
-          <p className="widget__text">Here's where the Proposals will go</p>
+          <div className="widget-body__text">
+            Here's where the Proposals will go
+          </div>
         </CardText>
       </Card>
     </div>

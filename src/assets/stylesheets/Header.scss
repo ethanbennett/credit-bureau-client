@@ -9,6 +9,7 @@
 
 .header__title {
   cursor: pointer;
+  font-family: "Asap Condensed";
 }
 
 .header__body {
@@ -22,10 +23,6 @@
   height: 80px;
 }
 
-.header__title {
-  color: white;
-}
-
 @keyframes logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -33,8 +30,11 @@
 
 .header__link {
   align-self: center;
-  padding: 10px 15px 8px;
+  padding: 14px 15px;
+  margin-right: 15px;
   color: #ff3b3f;
+  display: inline-block;
+  font-family: "Asap Condensed";  
 
   &:hover{
     color: #cc2f32;

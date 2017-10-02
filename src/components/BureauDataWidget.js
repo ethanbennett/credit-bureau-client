@@ -9,9 +9,11 @@ const BureauDataWidget = () => {
   return (
     <div>
       <Card className="widget__card">
-        <CardTitle title="Bureau Data" />
+        <CardTitle title="Bureau Data" subtitle="Overall MFI data" />
         <CardText>
-          <p className="widget__text">Here's where the Bureau Stats will go</p>
+          <div className="widget-body__text">
+            Here's where the Bureau Stats will go
+          </div>
         </CardText>
       </Card>
     </div>

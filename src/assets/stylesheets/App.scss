@@ -1,15 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Asap+Condensed|Droid+Sans');
+
 .card {
   margin: 16px;
 }
 
 #root {
-  background-color: #efefef;
-  padding-bottom: 400px;
+  background: linear-gradient(to bottom right,#455a64, #eceff1);
+  padding-bottom: 300px;
 }
 
 a {
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto";
   font-weight: 400;
 }
+
+.md-text--secondary {
+  font-family: "Asap Condensed";
+  color: #546e7a !important;
+}
+
+.widget-body__text {
+  color: #546e7a;
+  font-family: "Droid Sans";
+  font-weight: 400;
+}
+
+.md-card-title--title {
+  font-family: "Asap Condensed";
+}
+
+h3 {
+  font-family: "Roboto";
+}
+
 
