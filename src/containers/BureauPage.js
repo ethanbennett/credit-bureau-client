@@ -30,34 +30,31 @@ export class BureauPage extends Component {
   renderMfiDialog = () => {
     return (
       <DialogContainer
-      id="simple-action-dialog"
-      visible={this.state.mfiDialogVisible}
-      onHide={this.hideMfiDialog}
-      title="Add a New MFI"
+        id="simple-action-dialog"
+        visible={this.state.mfiDialogVisible}
+        onHide={this.hideMfiDialog}
+        title="Add a New MFI"
       >
-      <TextField
-        id="simple-action-dialog-field"
-        label="Organization Name"
-      />
-      <div className="btn-container">
-        <Button
-          id="cancel-btn"
-          label="CANCEL"
-          onClick={this.hideMfiDialog}
-          flat
-        />
-        <Button
-          id="submit-btn"
-          label="SUBMIT"
-          onClick={this.hideMfiDialog}
-          primary
-          raised
-          type="submit"
-        />
-      </div>
+        <TextField id="simple-action-dialog-field" label="Organization Name" />
+        <div className="btn-container">
+          <Button
+            id="cancel-btn"
+            label="CANCEL"
+            onClick={this.hideMfiDialog}
+            flat
+          />
+          <Button
+            id="submit-btn"
+            label="SUBMIT"
+            onClick={this.hideMfiDialog}
+            primary
+            raised
+            type="submit"
+          />
+        </div>
       </DialogContainer>
     );
-  }
+  };
 
   showProposalDialog = () => {
     this.setState({ proposalDialogVisible: true });
@@ -75,33 +72,27 @@ export class BureauPage extends Component {
         onHide={this.hideProposalDialog}
         title="Add a New Proposal"
       >
-      <TextField
-        id="simple-action-dialog-field"
-        label="Proposal Title"
-      />
-      <TextField
-        id="simple-action-dialog-field"
-        label="Description"
-      />
-      <div className="btn-container">
-        <Button
-          id="cancel-btn"
-          label="CANCEL"
-          onClick={this.hideProposalDialog}
-          flat
-        />
-        <Button
-          id="submit-btn"
-          label="SUBMIT"
-          onClick={this.hideProposalDialog}
-          primary
-          raised
-          type="submit"
-        />
-      </div>
+        <TextField id="simple-action-dialog-field" label="Proposal Title" />
+        <TextField id="simple-action-dialog-field" label="Description" />
+        <div className="btn-container">
+          <Button
+            id="cancel-btn"
+            label="CANCEL"
+            onClick={this.hideProposalDialog}
+            flat
+          />
+          <Button
+            id="submit-btn"
+            label="SUBMIT"
+            onClick={this.hideProposalDialog}
+            primary
+            raised
+            type="submit"
+          />
+        </div>
       </DialogContainer>
     );
-  }
+  };
 
   render() {
     return (

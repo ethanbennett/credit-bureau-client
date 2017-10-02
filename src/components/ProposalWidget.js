@@ -8,7 +8,11 @@ import '../../src/assets/stylesheets/ProposalWidget.scss';
 class ProposalWidget extends Component {
   renderIcon() {
     return (
-      <i className="material-icons" id="widget-icon" onClick={this.props.showDialog}>
+      <i
+        className="material-icons"
+        id="widget-icon"
+        onClick={this.props.showDialog}
+      >
         add_circle_outline
       </i>
     );
