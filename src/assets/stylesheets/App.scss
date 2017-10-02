@@ -41,12 +41,45 @@ a {
   }
 }
 
+.md-title--dialog {
+  font-family: "Asap Condensed";
+  float: right;
+}
+
 .md-card-title--primary {
   display: block !important;  
 }
 
-.material-icons {
+.md-floating-label {
+  font-family: "Droid Sans";
+}
 
+.md-divider--text-field {
+  background: #62b1c1 !important;
+
+  &:after {
+    background: #62b1c1 !important;    
+  }
+}
+
+.md-dialog--centered {
+  width: 50% !important;
+}
+
+.md-floating-label--active {
+  color: #62b1c1 !important;  
+}
+
+.md-divider--text-field-active {
+  background: #62b1c1 !important;  
+}
+
+.first-text-field {
+  margin-top: 60px;
+}
+
+.md-text-field {
+  font-family: "Droid Sans";
 }
 
 .widget__card {

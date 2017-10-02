@@ -30,6 +30,24 @@ export class BureauPage extends Component {
     this.setState({ mfiDialogVisible: false });
   };
 
+  renderMfiDialog = () => {
+    return (
+      <DialogContainer
+      id="simple-action-dialog"
+      visible={this.state.mfiDialogVisible}
+      onHide={this.hideMfiDialog}
+      actions={this.state.actions}
+      title="Add a New MFI"
+      >
+      <TextField
+        className="first-text-field"
+        id="simple-action-dialog-field"
+        label="Organization Name"
+      />
+      </DialogContainer>
+    );
+  }
+
   showProposalDialog = () => {
     this.setState({ proposalDialogVisible: true });
   };
@@ -37,6 +55,28 @@ export class BureauPage extends Component {
   hideProposalDialog = () => {
     this.setState({ proposalDialogVisible: false });
   };
+
+  renderProposalDialog = () => {
+    return (
+      <DialogContainer
+        id="simple-action-dialog"
+        visible={this.state.proposalDialogVisible}
+        onHide={this.hideProposalDialog}
+        actions={this.state.actions}
+        title="Add a New Proposal"
+      >
+      <TextField
+        className="first-text-field"
+        id="simple-action-dialog-field"
+        label="Proposal Title"
+      />
+      <TextField
+        id="simple-action-dialog-field"
+        label="Description"
+      />
+      </DialogContainer>
+    );
+  }
 
   setActions = () => {
     this.state.actions.push({
@@ -55,19 +95,9 @@ export class BureauPage extends Component {
     return (
       <div>
         <BureauDataWidget showDialog={this.showMfiDialog} />
-        <DialogContainer
-          id="simple-action-dialog"
-          visible={this.state.mfiDialogVisible}
-          onHide={this.hideMfiDialog}
-          actions={this.state.actions}
-          title="Add a New MFI"
-        >
-          <TextField
-            id="simple-action-dialog-field"
-            label="Organization Name"
-          />
-        </DialogContainer>
-        <ProposalWidget />
+        <ProposalWidget showDialog={this.showProposalDialog} />
+        {this.renderMfiDialog()}
+        {this.renderProposalDialog()}
       </div>
     );
   }
