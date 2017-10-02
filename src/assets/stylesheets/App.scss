@@ -43,7 +43,6 @@ a {
 
 .md-title--dialog {
   font-family: "Asap Condensed";
-  float: right;
 }
 
 .md-card-title--primary {
@@ -52,11 +51,10 @@ a {
 
 .md-floating-label {
   font-family: "Droid Sans";
+  color: #546e7a !important;
 }
 
 .md-divider--text-field {
-  background: #62b1c1 !important;
-
   &:after {
     background: #62b1c1 !important;    
   }
@@ -74,12 +72,23 @@ a {
   background: #62b1c1 !important;  
 }
 
-.first-text-field {
-  margin-top: 60px;
-}
-
 .md-text-field {
   font-family: "Droid Sans";
+}
+
+.btn-container {
+  float: right;
+  margin-top: 50px;
+}
+
+.md-background--primary {
+  background: #ff3b3f !important;
+  font-family: "Asap Condensed";
+}
+
+.md-btn--flat {
+  font-family: "Asap Condensed";
+  color: #546e7a !important;
 }
 
 .widget__card {

@@ -16,17 +16,14 @@ export class BureauPage extends Component {
     this.state = {
       mfiDialogVisible: false,
       proposalDialogVisible: false,
-      actions: [],
     };
   }
 
   showMfiDialog = () => {
-    this.setActions();
     this.setState({ mfiDialogVisible: true });
   };
 
   hideMfiDialog = () => {
-    this.setState({ actions: [] });
     this.setState({ mfiDialogVisible: false });
   };
 
@@ -36,14 +33,28 @@ export class BureauPage extends Component {
       id="simple-action-dialog"
       visible={this.state.mfiDialogVisible}
       onHide={this.hideMfiDialog}
-      actions={this.state.actions}
       title="Add a New MFI"
       >
       <TextField
-        className="first-text-field"
         id="simple-action-dialog-field"
         label="Organization Name"
       />
+      <div className="btn-container">
+        <Button
+          id="cancel-btn"
+          label="CANCEL"
+          onClick={this.hideMfiDialog}
+          flat
+        />
+        <Button
+          id="submit-btn"
+          label="SUBMIT"
+          onClick={this.hideMfiDialog}
+          primary
+          raised
+          type="submit"
+        />
+      </div>
       </DialogContainer>
     );
   }
@@ -62,11 +73,9 @@ export class BureauPage extends Component {
         id="simple-action-dialog"
         visible={this.state.proposalDialogVisible}
         onHide={this.hideProposalDialog}
-        actions={this.state.actions}
         title="Add a New Proposal"
       >
       <TextField
-        className="first-text-field"
         id="simple-action-dialog-field"
         label="Proposal Title"
       />
@@ -74,22 +83,25 @@ export class BureauPage extends Component {
         id="simple-action-dialog-field"
         label="Description"
       />
+      <div className="btn-container">
+        <Button
+          id="cancel-btn"
+          label="CANCEL"
+          onClick={this.hideProposalDialog}
+          flat
+        />
+        <Button
+          id="submit-btn"
+          label="SUBMIT"
+          onClick={this.hideProposalDialog}
+          primary
+          raised
+          type="submit"
+        />
+      </div>
       </DialogContainer>
     );
   }
-
-  setActions = () => {
-    this.state.actions.push({
-      secondary: true,
-      children: 'Cancel',
-      onClick: this.hideMfiDialog,
-    });
-    this.state.actions.push(
-      <Button flat primary onClick={this.hideMfiDialog}>
-        Confirm
-      </Button>
-    );
-  };
 
   render() {
     return (
