@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons';
 import Toolbar from 'react-md/lib/Toolbars';
 import Paper from 'react-md/lib/Papers';
 import { withRouter } from 'react-router';
