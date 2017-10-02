@@ -30,6 +30,25 @@ a {
   font-family: "Asap Condensed";
 }
 
+#widget-icon {
+  margin-top: -60px;
+  float: right;
+  color: #62b1c1;
+  cursor: pointer;
+
+  &:hover {
+    color: #ff3b3f;    
+  }
+}
+
+.md-card-title--primary {
+  display: block !important;  
+}
+
+.material-icons {
+
+}
+
 .widget__card {
   margin-top: 20px;
   margin-left: 20px;
