@@ -6,6 +6,7 @@ import { Route, withRouter } from 'react-router';
 import { addItem } from '../store/items/actions';
 import Header from '../components/Header';
 import BureauPage from '../containers/BureauPage';
+import ClientsPage from '../containers/ClientsPage';
 import '../assets/stylesheets/App.scss';
 
 export class App extends Component {
@@ -19,6 +20,7 @@ export class App extends Component {
         <Header />
 
         <Route exact path="/" component={BureauPage} />
+        <Route exact path="/clients" component={ClientsPage} />
       </div>
     );
   }
