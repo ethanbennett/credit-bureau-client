@@ -28,8 +28,8 @@ export class Header extends Component {
       <Link className="header__link" to={'/clients'}>
         CLIENTS
       </Link>,
-      <Link className="header__link" to={'/marketplace'}>
-        MARKETPLACE
+      <Link className="header__link" to={'/organizations'}>
+        ORGANIZATIONS
       </Link>,
     ];
 
