@@ -4,6 +4,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import DialogContainer from 'react-md/lib/Dialogs';
 import TextField from 'react-md/lib/TextFields';
 
+import { ethereumClient } from '../utils/blockchainConnection';
 import BureauDataWidget from '../components/BureauDataWidget';
 import ProposalWidget from '../components/ProposalWidget';
 
@@ -28,6 +29,7 @@ export class BureauPage extends Component {
   };
 
   renderMfiDialog = () => {
+    console.log(ethereumClient.isConnected());
     return (
       <DialogContainer
         id="simple-action-dialog"
