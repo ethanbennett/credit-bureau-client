@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import DialogContainer from 'react-md/lib/Dialogs';
 import TextField from 'react-md/lib/TextFields';
 
-import { ethereumClient } from '../utils/blockchainConnection';
 import BureauDataWidget from '../components/BureauDataWidget';
 import ProposalWidget from '../components/ProposalWidget';
+import Loader from '../components/Loading';
 
 import '../assets/stylesheets/BureauPage.scss';
 
@@ -29,7 +30,6 @@ export class BureauPage extends Component {
   };
 
   renderMfiDialog = () => {
-    console.log(ethereumClient.isConnected());
     return (
       <DialogContainer
         id="simple-action-dialog"
@@ -96,9 +96,16 @@ export class BureauPage extends Component {
     );
   };
 
+  renderLoader = () => {
+    if (this.props.requesting) {
+      return <Loader />;
+    }
+  };
+
   render() {
     return (
       <div>
+        {this.renderLoader()}
         <BureauDataWidget showDialog={this.showMfiDialog} />
         <ProposalWidget showDialog={this.showProposalDialog} />
         {this.renderMfiDialog()}
@@ -108,10 +115,16 @@ export class BureauPage extends Component {
   }
 }
 
-BureauPage.propTypes = {};
+BureauPage.propTypes = {
+  dispatch: PropTypes.func,
+  orgList: PropTypes.array,
+};
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    orgList: state.bureau.orgList,
+    requesting: state.bureau.requesting,
+  };
 }
 
 export default connect(mapStateToProps)(BureauPage);
