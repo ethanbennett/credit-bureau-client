@@ -8,7 +8,7 @@ export function getOrgList() {
     try {
       const orgList = await Bureau.getOrgList();
       dispatch(getOrgListSuccess(orgList));
-    } catch(err) {
+    } catch (err) {
       dispatch(getOrgListFailure(err));
     }
   };

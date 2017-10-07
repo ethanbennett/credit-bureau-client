@@ -1,8 +1,8 @@
 import { ethereumClient } from '../utils/blockchainConnection';
 import {
-        controllerContractABI,
-        controllerContractAddress
-      } from '../utils/controllerContract';
+  controllerContractABI,
+  controllerContractAddress,
+} from '../utils/controllerContract';
 
 class Bureau {
   constructor() {

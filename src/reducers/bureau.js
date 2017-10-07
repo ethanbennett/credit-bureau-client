@@ -1,12 +1,12 @@
 import {
   ORG_LIST__FAILURE,
   ORG_LIST__REQUEST,
-  ORG_LIST__SUCCESS
+  ORG_LIST__SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
   orgList: [],
-}
+};
 
 export default function bureau(state = initialState, action) {
   switch (action.type) {
