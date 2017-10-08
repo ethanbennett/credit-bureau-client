@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import TextField from 'react-md/lib/TextFields';
 
 import BureauDataWidget from '../components/BureauDataWidget';
+import OrgDialog from '../components/OrgDialog';
+
+import { renderLoader } from '../utils/renderLoader';
 
 export class OrganizationsPage extends Component {
   constructor(props) {
@@ -15,57 +16,37 @@ export class OrganizationsPage extends Component {
     };
   }
 
-  showDialog = () => {
-    this.setState({ dialogVisible: true });
-  };
-
-  hideDialog = () => {
-    this.setState({ dialogVisible: false });
-  };
-
-  renderDialog = () => {
-    return (
-      <DialogContainer
-        id="simple-action-dialog"
-        visible={this.state.dialogVisible}
-        onHide={this.hideDialog}
-        title="Add a New MFI"
-      >
-        <TextField id="simple-action-dialog-field" label="Organization Name" />
-        <div className="btn-container">
-          <Button
-            id="cancel-btn"
-            label="CANCEL"
-            onClick={this.hideDialog}
-            flat
-          />
-          <Button
-            id="submit-btn"
-            label="SUBMIT"
-            onClick={this.hideDialog}
-            primary
-            raised
-            type="submit"
-          />
-        </div>
-      </DialogContainer>
-    );
+  toggleDialog = () => {
+    this.setState({ dialogVisible: !this.state.dialogVisible });
   };
 
   render = () => {
+    const { orgList, requesting } = this.props;
+    const { dialogVisible } = this.state;
+
     return (
       <div>
-        <BureauDataWidget showDialog={this.showDialog} />
-        {this.renderDialog()}
+        {renderLoader(requesting)}
+        <BureauDataWidget orgList={orgList} showDialog={this.toggleDialog} />
+        <OrgDialog
+          dialogVisible={dialogVisible}
+          hideDialog={this.toggleDialog}
+        />
       </div>
     );
   };
 }
 
-OrganizationsPage.propTypes = {};
+OrganizationsPage.propTypes = {
+  orgList: PropTypes.array,
+  requesting: PropTypes.bool,
+};
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    orgList: state.bureau.orgList,
+    requesting: state.bureau.requesting,
+  };
 }
 
 export default connect(mapStateToProps)(OrganizationsPage);

@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import Loader from 'react-loader';
+import ClientDialog from '../components/ClientDialog';
+import ClientWidget from '../components/ClientWidget';
 
 import {
   getOrgData,
   getAllLoanDataForAddresses,
   getBasicClientInfoForOrg,
 } from '../actions/bureau';
+import { renderLoader } from '../utils/renderLoader';
 
 import '../assets/stylesheets/BureauPage.scss';
 
 export class OrganizationDetailsPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dialogVisible: false,
+    };
+  }
   componentDidMount = () => {
     const { dispatch, match } = this.props;
     // dispatch(getOrgData(match.params.id));
@@ -22,35 +28,22 @@ export class OrganizationDetailsPage extends Component {
     // dispatch(getBasicClientInfoForOrg(match.params.id));
   };
 
-  renderClientWidget = () => {
-    return (
-      <Card className="widget__card">
-        {this.renderLoader()}
-        <CardTitle
-          title="Clients"
-          subtitle="All clients for this organization"
-          children={this.renderIcon()}
-        />
-        <CardText className="widget-body__text">
-          Here's where every client will be displayed with a link to their
-          profile pages
-        </CardText>
-        {this.renderDialog()}
-      </Card>
-    );
-  };
-
-  renderLoader = () => {
-    if (this.props.requesting) {
-      return <Loader />;
-    }
+  toggleDialog = () => {
+    this.setState({ dialogVisible: !this.state.dialogVisible });
   };
 
   render() {
+    const { requesting } = this.props;
+    const { dialogVisible } = this.state;
+
     return (
       <div>
-        {this.renderLoader()};
-        {this.renderClientWidget()};
+        {renderLoader(requesting)};
+        <ClientWidget toggleDialog={this.toggleDialog} />
+        <ClientDialog
+          dialogVisible={dialogVisible}
+          hideDialog={this.toggleDialog}
+        />
       </div>
     );
   }
@@ -61,6 +54,7 @@ OrganizationDetailsPage.propTypes = {
   dispatch: PropTypes.func,
   loans: PropTypes.array,
   orgData: PropTypes.array,
+  requesting: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
@@ -68,6 +62,7 @@ function mapStateToProps(state) {
     clients: state.bureau.clientList,
     loans: state.bureau.loans,
     orgData: state.bureau.orgData,
+    requesting: state.bureau.requesting,
   };
 }
 

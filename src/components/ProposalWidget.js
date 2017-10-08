@@ -4,22 +4,11 @@ import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
 
 import { decreaseVote, increaseVote } from '../actions/bureau';
+import { renderIcon } from '../utils/renderIcon';
 
 import '../../src/assets/stylesheets/ProposalWidget.scss';
 
 class ProposalWidget extends Component {
-  renderIcon = () => {
-    return (
-      <i
-        className="material-icons"
-        id="widget-icon"
-        onClick={this.props.showDialog}
-      >
-        add_circle_outline
-      </i>
-    );
-  };
-
   renderProposalHeader = () => {
     return (
       <tr className="proposal-table__header">
@@ -58,7 +47,7 @@ class ProposalWidget extends Component {
       <div>
         <Card className="widget__card">
           <CardTitle
-            children={this.renderIcon()}
+            children={renderIcon(this.props.showDialog)}
             subtitle="Blockchain-Based Governance for the Bureau"
             title="Proposals"
           />

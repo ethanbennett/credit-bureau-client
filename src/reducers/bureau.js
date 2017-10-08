@@ -45,6 +45,7 @@ const initialState = {
   orgData: [],
   orgList: [],
   proposals: [],
+  requesting: false,
   transactionHash: '',
 };
 
@@ -94,9 +95,9 @@ export default function bureau(state = initialState, action) {
       return { ...state, requesting: false, proposals: action.proposals };
     case CREATE_PROPOSAL__FAILURE:
       return { ...state, requesting: false, error: action.error };
-    case CREATE_CLIENT__REQUEST:
+    case CREATE_PROPOSAL__REQUEST:
       return { ...state, requesting: true };
-    case CREATE_CLIENT__SUCCESS:
+    case CREATE_PROPOSAL__SUCCESS:
       return {
         ...state,
         requesting: false,
