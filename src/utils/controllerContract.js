@@ -1,3 +1,9 @@
-export const controllerContractABI = [];
+import { ethereumClient } from '../utils/blockchainConnection';
 
-export const controllerContractAddress = '';
+const controllerContractABI = [];
+
+const controllerContractAddress = '';
+
+export const controllerContract = ethereumClient.eth
+  .contract(controllerContractABI)
+  .at(controllerContractAddress);

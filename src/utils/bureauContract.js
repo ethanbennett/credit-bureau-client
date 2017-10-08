@@ -1,3 +1,9 @@
-export const bureauContractABI = [];
+import { ethereumClient } from '../utils/blockchainConnection';
 
-export const bureauContractAddress = '';
+const bureauContractABI = [];
+
+const bureauContractAddress = '';
+
+export const bureauContract = ethereumClient.eth
+  .contract(bureauContractABI)
+  .at(bureauContractAddress);

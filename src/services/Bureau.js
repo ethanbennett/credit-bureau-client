@@ -1,53 +1,35 @@
-import { ethereumClient } from '../utils/blockchainConnection';
-import {
-  controllerContractABI,
-  controllerContractAddress,
-} from '../utils/controllerContract';
-import {
-  bureauContractABI,
-  bureauContractAddress,
-} from '../utils/bureauContract';
+import { controllerContract } from '../utils/controllerContract';
+import { bureauContract } from '../utils/bureauContract';
 
 class Bureau {
-  constructor() {
-    this.state = {
-      controllerContract: ethereumClient.eth
-        .contract(controllerContractABI)
-        .at(controllerContractAddress),
-      bureauContract: ethereumClient.eth
-        .contract(bureauContractABI)
-        .at(bureauContractAddress),
-    };
-  }
-
   async getOrgList() {
-    return await this.state.controllerContract.getAllOrgInfo();
+    return await controllerContract.getAllOrgInfo();
   }
 
   async getOrgData(orgId) {
-    return await this.state.controllerContract.getDetailedOrgInfo(orgId);
+    return await controllerContract.getDetailedOrgInfo(orgId);
   }
 
   async getClientList() {
-    return await this.state.controllerContract.getAllClientData();
+    return await controllerContract.getAllClientData();
   }
 
   async getClientListForOrg(orgId) {
-    return await this.state.controllerContract.getBasicClientInfoForOrg(orgId);
+    return await controllerContract.getBasicClientInfoForOrg(orgId);
   }
 
   async getClientData(clientId) {
-    return await this.state.controllerContract.getDetailedClientInfo(clientId);
+    return await controllerContract.getDetailedClientInfo(clientId);
   }
 
   async getAllLoanData(orgOrClientAddress) {
-    return await this.state.controllerContract.getAllLoanDataForAddresses(
+    return await controllerContract.getAllLoanDataForAddresses(
       orgOrClientAddress
     );
   }
 
   async getProposals() {
-    return await this.state.controllerContract.getAllProposalData();
+    return await controllerContract.getAllProposalData();
   }
 
   async createClient(
@@ -64,7 +46,7 @@ class Bureau {
     marritalStatus,
     phoneNumber
   ) {
-    return await this.state.bureauContract.createClient(
+    return await bureauContract.createClient(
       id,
       clientWallet,
       name,
@@ -82,7 +64,7 @@ class Bureau {
   }
 
   async createOrg(id, name, hqAddress, country, currency, orgWallet) {
-    return await this.state.bureauContract.addOrgToBureau(
+    return await bureauContract.addOrgToBureau(
       id,
       name,
       hqAddress,
@@ -94,19 +76,19 @@ class Bureau {
   }
 
   async increaseVote(proposalId) {
-    return await this.state.controllerContract.increaseVote(proposalId, {
+    return await controllerContract.increaseVote(proposalId, {
       gas: 4000000,
     });
   }
 
   async decreaseVote(proposalId) {
-    return await this.state.controllerContract.decreaseVote(proposalId, {
+    return await controllerContract.decreaseVote(proposalId, {
       gas: 4000000,
     });
   }
 
   async createProposal(name, description) {
-    return await this.state.bureauContract.createProposal(name, description, {
+    return await bureauContract.createProposal(name, description, {
       gas: 4000000,
     });
   }
