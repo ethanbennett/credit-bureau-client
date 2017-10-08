@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
@@ -6,6 +7,8 @@ import CardText from 'react-md/lib/Cards/CardText';
 import DialogContainer from 'react-md/lib/Dialogs';
 import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons/Button';
+
+import Loader from '../components/Loading';
 
 export class ClientsPage extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ export class ClientsPage extends Component {
       dialogVisible: false,
     };
   }
+
   renderDialog = () => {
     return (
       <DialogContainer
@@ -52,6 +56,12 @@ export class ClientsPage extends Component {
     this.setState({ dialogVisible: false });
   };
 
+  renderLoader = () => {
+    if (this.props.requesting) {
+      return <Loader />;
+    }
+  };
+
   renderIcon = () => {
     return (
       <i className="material-icons" id="widget-icon" onClick={this.showDialog}>
@@ -63,6 +73,7 @@ export class ClientsPage extends Component {
   render = () => {
     return (
       <Card className="widget__card">
+        {this.renderLoader()}
         <CardTitle
           title="Clients"
           subtitle="All existing loan recipients"
@@ -78,8 +89,16 @@ export class ClientsPage extends Component {
   };
 }
 
+ClientsPage.propTypes = {
+  dispatch: PropTypes.func,
+  clientsList: PropTypes.array,
+};
+
 function mapStateToProps(state) {
-  return {};
+  return {
+    clientsList: state.bureau.clientsList,
+    requesting: state.bureau.requesting,
+  };
 }
 
 export default connect(mapStateToProps)(ClientsPage);
