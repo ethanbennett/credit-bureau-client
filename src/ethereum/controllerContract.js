@@ -1,4 +1,4 @@
-import { ethereumClient } from '../utils/blockchainConnection';
+import { ethereumClient } from './connection';
 
 const controllerContractABI = [];
 
