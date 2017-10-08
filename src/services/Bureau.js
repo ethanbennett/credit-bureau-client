@@ -49,6 +49,49 @@ class Bureau {
   async getProposals() {
     return await this.state.controllerContract.getAllProposalData();
   }
+
+  async createClient(
+    id,
+    clientWallet,
+    name,
+    homeAddress,
+    birthday,
+    age,
+    gender,
+    education,
+    householdSize,
+    dependents,
+    marritalStatus,
+    phoneNumber
+  ) {
+    return await this.state.bureauContract.createClient(
+      id,
+      clientWallet,
+      name,
+      homeAddress,
+      birthday,
+      age,
+      gender,
+      education,
+      householdSize,
+      dependents,
+      marritalStatus,
+      phoneNumber,
+      { gas: 4000000 }
+    );
+  }
+
+  async createOrg(id, name, hqAddress, country, currency, orgWallet) {
+    return await this.state.bureauContract.addOrgToBureau(
+      id,
+      name,
+      hqAddress,
+      country,
+      currency,
+      orgWallet,
+      { gas: 4000000 }
+    );
+  }
 }
 
 export default new Bureau();

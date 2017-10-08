@@ -175,3 +175,89 @@ export function getClientsSuccess(proposals) {
 export function getProposalsFailure(err) {
   return { type: types.FETCH_PROPOSALS__FAILURE, error: err };
 }
+
+export function createClient(
+  id,
+  clientWallet,
+  name,
+  homeAddress,
+  birthday,
+  age,
+  gender,
+  education,
+  householdSize,
+  dependents,
+  marritalStatus,
+  phoneNumber
+) {
+  return async dispatch => {
+    dispatch(createClientRequest());
+
+    try {
+      const transactionHash = await Bureau.createClient(
+        id,
+        clientWallet,
+        name,
+        homeAddress,
+        birthday,
+        age,
+        gender,
+        education,
+        householdSize,
+        dependents,
+        marritalStatus,
+        phoneNumber
+      );
+      dispatch(createClientSuccess(transactionHash));
+    } catch (err) {
+      dispatch(createClientFailure(err));
+    }
+  };
+}
+
+export function createClientRequest() {
+  return { type: types.CREATE_CLIENT__REQUEST };
+}
+
+export function createClientSuccess() {
+  return {
+    type: types.CREATE_CLIENT__SUCCESS,
+    transactionHash: transactionHash,
+  };
+}
+
+export function createClientFailure() {
+  return { type: types.CREATE_CLIENT__FAILURE, error: err };
+}
+
+export function createOrg(id, name, hqAddress, country, currency, orgWallet) {
+  return async dispatch => {
+    dispatch(createOrgRequest());
+
+    try {
+      const transactionHash = await Bureau.createOrg(
+        id,
+        name,
+        hqAddress,
+        country,
+        currency,
+        orgWallet
+      );
+      dispatch(createOrgSuccess(transactionHash));
+    } catch (err) {
+      dispatch(createOrgFailure(err));
+    }
+  };
+}
+
+export function createOrgRequest() {
+  return { type: types.CREATE_ORG__REQUEST };
+}
+
+export function createOrgFailure(err) {
+  return { type: types.CREATE_ORG__FAILURE, error: err };
+}
+
+export function createOrgSuccess(transactionHash) {
+  return { type: types.CREATE_ORG__SUCCESS, transactionHash: transactionHash };
+}

@@ -5,6 +5,9 @@ import {
   FETCH_ORG_DATA__FAILURE,
   FETCH_ORG_DATA__REQUEST,
   FETCH_ORG_DATA__SUCCESS,
+  CREATE_ORG__FAILURE,
+  CREATE_ORG__REQUEST,
+  CREATE_ORG__SUCCESS,
   FETCH_CLIENT_LIST__FAILURE,
   FETCH_CLIENT_LIST__REQUEST,
   FETCH_CLIENT_LIST__SUCCESS,
@@ -14,6 +17,9 @@ import {
   FETCH_CLIENT_DATA__FAILURE,
   FETCH_CLIENT_DATA__REQUEST,
   FETCH_CLIENT_DATA__SUCCESS,
+  CREATE_CLIENT__FAILURE,
+  CREATE_CLIENT__REQUEST,
+  CREATE_CLIENT__SUCCESS,
   FETCH_LOAN_DATA__FAILURE,
   FETCH_LOAN_DATA__REQUEST,
   FETCH_LOAN_DATA__SUCCESS,
@@ -23,13 +29,14 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  orgList: [],
-  clientList: [],
-  orgData: [],
   clientData: [],
-  loans: [],
-  proposals: [],
+  clientList: [],
   error: '',
+  loans: [],
+  orgData: [],
+  orgList: [],
+  proposals: [],
+  transactionHash: '',
 };
 
 export default function bureau(state = initialState, action) {
@@ -76,6 +83,26 @@ export default function bureau(state = initialState, action) {
       return { ...state, requesting: true };
     case FETCH_PROPOSALS__SUCCESS:
       return { ...state, requesting: false, proposals: action.proposals };
+    case CREATE_CLIENT__FAILURE:
+      return { ...state, requesting: false, error: action.error };
+    case CREATE_CLIENT__REQUEST:
+      return { ...state, requesting: true };
+    case CREATE_CLIENT__SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        transactionHash: action.transactionHash,
+      };
+    case CREATE_ORG__FAILURE:
+      return { ...state, requesting: false, error: action.error };
+    case CREATE_ORG__REQUEST:
+      return { ...state, requesting: true };
+    case CREATE_ORG__SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        transactionHash: action.transactionHash,
+      };
     default:
       return state;
   }
