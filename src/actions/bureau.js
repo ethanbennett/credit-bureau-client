@@ -317,3 +317,31 @@ export function decreaseVoteSuccess(transactionHash) {
     transactionHash: transactionHash,
   };
 }
+
+export function createProposal(id, name) {
+  return async dispatch => {
+    dispatch(createProposalRequest());
+
+    try {
+      const transactionHash = await Bureau.createProposal(id, name);
+      dispatch(createProposalSuccess(transactionHash));
+    } catch (err) {
+      dispatch(createProposalFailure());
+    }
+  };
+}
+
+export function createProposalRequest() {
+  return { type: types.CREATE_PROPOSAL__REQUEST };
+}
+
+export function createProposalFailure(err) {
+  return { type: types.CREATE_PROPOSAL__FAILURE, error: err };
+}
+
+export function createProposalSuccess(transactionHash) {
+  return {
+    type: types.CREATE_PROPOSAL__SUCCESS,
+    transactionHash: transactionHash,
+  };
+}

@@ -104,6 +104,12 @@ class Bureau {
       gas: 4000000,
     });
   }
+
+  async createProposal(name, description) {
+    return await this.state.bureauContract.createProposal(name, description, {
+      gas: 4000000,
+    });
+  }
 }
 
 export default new Bureau();

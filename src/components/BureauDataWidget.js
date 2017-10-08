@@ -18,6 +18,23 @@ class BureauDataWidget extends Component {
     );
   }
 
+  renderMfiCards = () => {
+    const { orgList } = this.props;
+
+    orgList.map((org, i) => {
+      return (
+        <Card className="org-index" key={i}>
+          <CardTitle
+            className="org-index__title"
+            title="Org Name Placeholder"
+            avatar="http://google.com/placeholder"
+          />
+          <CardText className="org-index__data">Placeholder data</CardText>
+        </Card>
+      );
+    });
+  };
+
   render() {
     return (
       <div>
@@ -28,9 +45,7 @@ class BureauDataWidget extends Component {
             children={this.renderIcon()}
           />
           <CardText>
-            <div className="widget-body__text">
-              Here's where the Bureau Stats will go
-            </div>
+            <div className="widget-body__text">{this.renderMfiCards()}</div>
           </CardText>
         </Card>
       </div>

@@ -8,6 +8,7 @@ import TextField from 'react-md/lib/TextFields';
 import BureauDataWidget from '../components/BureauDataWidget';
 import ProposalWidget from '../components/ProposalWidget';
 import Loader from '../components/Loading';
+import { createOrg, getOrgList, getProposals } from '../actions/bureau';
 
 import '../assets/stylesheets/BureauPage.scss';
 
@@ -20,6 +21,12 @@ export class BureauPage extends Component {
       proposalDialogVisible: false,
     };
   }
+
+  componentDidMount = () => {
+    const { dispatch, match } = this.props;
+    // dispatch(getOrgList());
+    // dispatch(getProposals());
+  };
 
   showMfiDialog = () => {
     this.setState({ mfiDialogVisible: true });
@@ -37,7 +44,11 @@ export class BureauPage extends Component {
         onHide={this.hideMfiDialog}
         title="Add a New MFI"
       >
-        <TextField id="simple-action-dialog-field" label="Organization Name" />
+        <TextField id="simple-action-dialog-field" label="Name" />
+        <TextField id="simple-action-dialog-field" label="Physical Address" />
+        <TextField id="simple-action-dialog-field" label="Wallet Address" />
+        <TextField id="simple-action-dialog-field" label="Country" />
+        <TextField id="simple-action-dialog-field" label="Currency" />
         <div className="btn-container">
           <Button
             id="cancel-btn"
@@ -103,11 +114,17 @@ export class BureauPage extends Component {
   };
 
   render() {
+    const { orgList, proposals } = this.props;
+
     return (
       <div>
         {this.renderLoader()}
-        <BureauDataWidget showDialog={this.showMfiDialog} />
-        <ProposalWidget showDialog={this.showProposalDialog} />
+        <BureauDataWidget orgList={orgList} showDialog={this.showMfiDialog} />
+        <ProposalWidget
+          dispatch={this.props.dispatch}
+          proposals={proposals}
+          showDialog={this.showProposalDialog}
+        />
         {this.renderMfiDialog()}
         {this.renderProposalDialog()}
       </div>

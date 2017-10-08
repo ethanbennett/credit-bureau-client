@@ -26,6 +26,9 @@ import {
   FETCH_PROPOSALS__FAILURE,
   FETCH_PROPOSALS__REQUEST,
   FETCH_PROPOSALS__SUCCESS,
+  CREATE_PROPOSAL__FAILURE,
+  CREATE_PROPOSAL__REQUEST,
+  CREATE_PROPOSAL__SUCCESS,
   INCREASE_VOTE__FAILURE,
   INCREASE_VOTE__REQUEST,
   INCREASE_VOTE__SUCCESS,
@@ -89,6 +92,16 @@ export default function bureau(state = initialState, action) {
       return { ...state, requesting: true };
     case FETCH_PROPOSALS__SUCCESS:
       return { ...state, requesting: false, proposals: action.proposals };
+    case CREATE_PROPOSAL__FAILURE:
+      return { ...state, requesting: false, error: action.error };
+    case CREATE_CLIENT__REQUEST:
+      return { ...state, requesting: true };
+    case CREATE_CLIENT__SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        transactionHash: action.transactionHash,
+      };
     case CREATE_CLIENT__FAILURE:
       return { ...state, requesting: false, error: action.error };
     case CREATE_CLIENT__REQUEST:
