@@ -3,8 +3,6 @@ import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
 
-import '../../src/assets/stylesheets/BureauDataWidget.scss';
-
 class BureauDataWidget extends Component {
   renderIcon() {
     return (

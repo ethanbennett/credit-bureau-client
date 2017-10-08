@@ -10,8 +10,6 @@ import ProposalDialog from '../components/ProposalDialog';
 import { createOrg, getOrgList, getProposals } from '../actions/bureau';
 import { renderLoader } from '../utils/renderLoader';
 
-import '../assets/stylesheets/BureauPage.scss';
-
 export class BureauPage extends Component {
   constructor(props) {
     super(props);

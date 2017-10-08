@@ -7,7 +7,6 @@ import CardText from 'react-md/lib/Cards/CardText';
 import { renderLoader } from '../utils/renderLoader';
 
 import { getClientData, getLoanData } from '../actions/bureau';
-import '../assets/stylesheets/BureauPage.scss';
 
 export class ClientDetailsPage extends Component {
   componentDidMount = () => {

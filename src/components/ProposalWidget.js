@@ -6,8 +6,6 @@ import CardText from 'react-md/lib/Cards/CardText';
 import { decreaseVote, increaseVote } from '../actions/bureau';
 import { renderIcon } from '../utils/renderIcon';
 
-import '../../src/assets/stylesheets/ProposalWidget.scss';
-
 class ProposalWidget extends Component {
   renderProposalHeader = () => {
     return (

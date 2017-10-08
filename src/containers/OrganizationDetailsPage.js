@@ -11,8 +11,6 @@ import {
 } from '../actions/bureau';
 import { renderLoader } from '../utils/renderLoader';
 
-import '../assets/stylesheets/BureauPage.scss';
-
 export class OrganizationDetailsPage extends Component {
   constructor(props) {
     super(props);
