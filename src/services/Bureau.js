@@ -1,5 +1,6 @@
 import { controllerContract } from '../ethereum/controllerContract';
 import { bureauContract } from '../ethereum/bureauContract';
+import { orgContract } from '../ethereum/orgContract';
 
 class Bureau {
   async getOrgList() {

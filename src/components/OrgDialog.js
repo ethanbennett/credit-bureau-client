@@ -14,6 +14,7 @@ class OrgDialog extends Component {
         onHide={hideDialog}
         title="Add a New MFI"
       >
+        <TextField id="simple-action-dialog-field" label="ID" />
         <TextField id="simple-action-dialog-field" label="Name" />
         <TextField id="simple-action-dialog-field" label="Physical Address" />
         <TextField id="simple-action-dialog-field" label="Wallet Address" />
