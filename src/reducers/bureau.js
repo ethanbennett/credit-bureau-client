@@ -26,6 +26,12 @@ import {
   FETCH_PROPOSALS__FAILURE,
   FETCH_PROPOSALS__REQUEST,
   FETCH_PROPOSALS__SUCCESS,
+  INCREASE_VOTE__FAILURE,
+  INCREASE_VOTE__REQUEST,
+  INCREASE_VOTE__SUCCESS,
+  DECREASE_VOTE__FAILURE,
+  DECREASE_VOTE__REQUEST,
+  DECREASE_VOTE__SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -98,6 +104,26 @@ export default function bureau(state = initialState, action) {
     case CREATE_ORG__REQUEST:
       return { ...state, requesting: true };
     case CREATE_ORG__SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        transactionHash: action.transactionHash,
+      };
+    case INCREASE_VOTE__FAILURE:
+      return { ...state, requesting: false, error: action.error };
+    case INCREASE_VOTE__REQUEST:
+      return { ...state, requesting: true };
+    case INCREASE_VOTE__SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        transactionHash: action.transactionHash,
+      };
+    case DECREASE_VOTE__FAILURE:
+      return { ...state, requesting: false, error: action.error };
+    case DECREASE_VOTE__REQUEST:
+      return { ...state, requesting: true };
+    case DECREASE_VOTE__SUCCESS:
       return {
         ...state,
         requesting: false,

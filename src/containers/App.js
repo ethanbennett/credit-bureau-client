@@ -7,6 +7,9 @@ import Header from '../components/Header';
 import BureauPage from '../containers/BureauPage';
 import ClientsPage from '../containers/ClientsPage';
 import OrganizationsPage from '../containers/OrganizationsPage';
+import ClientDetailsPage from '../containers/ClientDetailsPage';
+import OrganizationDetailsPage from '../containers/OrganizationDetailsPage';
+
 import '../assets/stylesheets/App.scss';
 
 export class App extends Component {
@@ -18,6 +21,8 @@ export class App extends Component {
         <Route exact path="/" component={BureauPage} />
         <Route exact path="/clients" component={ClientsPage} />
         <Route exact path="/organizations" component={OrganizationsPage} />
+        <Route path="/clients/:id" component={ClientDetailsPage} />
+        <Route path="/organizations/:id" component={OrganizationDetailsPage} />
       </div>
     );
   }

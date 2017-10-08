@@ -36,7 +36,7 @@ class Bureau {
     return await this.state.controllerContract.getBasicClientInfoForOrg(orgId);
   }
 
-  async getClientData() {
+  async getClientData(clientId) {
     return await this.state.controllerContract.getDetailedClientInfo(clientId);
   }
 
@@ -91,6 +91,18 @@ class Bureau {
       orgWallet,
       { gas: 4000000 }
     );
+  }
+
+  async increaseVote(proposalId) {
+    return await this.state.controllerContract.increaseVote(proposalId, {
+      gas: 4000000,
+    });
+  }
+
+  async decreaseVote(proposalId) {
+    return await this.state.controllerContract.decreaseVote(proposalId, {
+      gas: 4000000,
+    });
   }
 }
 

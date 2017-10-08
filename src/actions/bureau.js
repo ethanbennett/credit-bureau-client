@@ -76,7 +76,7 @@ export function getClientListFailure(err) {
   return { type: types.FETCH_CLIENT_LIST__FAILURE, error: err };
 }
 
-export function getClientListForOrg() {
+export function getClientListForOrg(orgId) {
   return async dispatch => {
     dispatch(getClientListForOrgRequest());
 
@@ -168,7 +168,7 @@ export function getProposalsRequest() {
   return { type: types.FETCH_PROPOSALS__REQUEST };
 }
 
-export function getClientsSuccess(proposals) {
+export function getProposalsSuccess(proposals) {
   return { type: types.FETCH_PROPOSALS__SUCCESS, proposals: proposals };
 }
 
@@ -219,14 +219,14 @@ export function createClientRequest() {
   return { type: types.CREATE_CLIENT__REQUEST };
 }
 
-export function createClientSuccess() {
+export function createClientSuccess(transactionHash) {
   return {
     type: types.CREATE_CLIENT__SUCCESS,
     transactionHash: transactionHash,
   };
 }
 
-export function createClientFailure() {
+export function createClientFailure(err) {
   return { type: types.CREATE_CLIENT__FAILURE, error: err };
 }
 
@@ -260,4 +260,60 @@ export function createOrgFailure(err) {
 
 export function createOrgSuccess(transactionHash) {
   return { type: types.CREATE_ORG__SUCCESS, transactionHash: transactionHash };
+}
+
+export function increaseVote(proposalId) {
+  return async dispatch => {
+    dispatch(increaseVoteRequest());
+
+    try {
+      const transactionHash = await Bureau.increaseVote(proposalId);
+      dispatch(increaseVoteSuccess(transactionHash));
+    } catch (err) {
+      dispatch(increaseVoteFailure(err));
+    }
+  };
+}
+
+export function increaseVoteRequest() {
+  return { type: types.INCREASE_VOTE__REQUEST };
+}
+
+export function increaseVoteFailure(err) {
+  return { type: types.INCREASE_VOTE__FAILURE, error: err };
+}
+
+export function increaseVoteSuccess(transactionHash) {
+  return {
+    type: types.INCREASE_VOTE__SUCCESS,
+    transactionHash: transactionHash,
+  };
+}
+
+export function decreaseVote(proposalId) {
+  return async dispatch => {
+    dispatch(decreaseVoteRequest());
+
+    try {
+      const transactionHash = await Bureau.decreaseVote(proposalId);
+      dispatch(decreaseVoteSuccess(transactionHash));
+    } catch (err) {
+      dispatch(decreaseVoteFailure(err));
+    }
+  };
+}
+
+export function decreaseVoteRequest() {
+  return { type: types.DECREASE_VOTE__REQUEST };
+}
+
+export function decreaseVoteFailure(err) {
+  return { type: types.DECREASE_VOTE__FAILURE, error: err };
+}
+
+export function decreaseVoteSuccess(transactionHash) {
+  return {
+    type: types.DECREASE_VOTE__SUCCESS,
+    transactionHash: transactionHash,
+  };
 }

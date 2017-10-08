@@ -118,12 +118,16 @@ export class BureauPage extends Component {
 BureauPage.propTypes = {
   dispatch: PropTypes.func,
   orgList: PropTypes.array,
+  proposals: PropTypes.array,
+  transactionHash: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
     orgList: state.bureau.orgList,
     requesting: state.bureau.requesting,
+    proposals: state.bureau.proposals,
+    transactionHash: state.bureau.transactionHash,
   };
 }
 
