@@ -36,11 +36,29 @@ export function formatProposalObjects(blockchainResponse) {
 
 export function formatClientObjects(blockchainResponse) {
   return blockchainResponse.map((clientInfo, i) => {
-    const splitData = clientInfo.split('-');
+    const splitData = ethereumClient.toAscii(clientInfo).split('-');
 
     return {
-      name: splitData[0],
-      birthday: splitData[1],
+      id: ethereumClient.toAscii(clientInfo),
+      name: ethereumClient.toAscii(splitData[0]),
+      birthday: ethereumClient.toAscii(splitData[1]),
     };
   });
+}
+
+export function formatOrgDetails(blockchainResponse) {
+  const firstResponse = blockchainResponse[0];
+  const secondResponse = blockchainResponse[1];
+
+  return {
+    orgId: firstResponse[1],
+    name: ethereumClient.toAscii(firstResponse[2]),
+    country: ethereumClient.toAscii(firstResponse[4]),
+    currency: ethereumClient.toAscii(firstResponse[5]),
+    walletAddress: firstResponse[0],
+    numberOfClients: secondResponse[0],
+    grossDeposits: secondResponse[1],
+    totalSuccessfulPayments: secondResponse[2],
+    totalPayments: secondResponse[3],
+  };
 }

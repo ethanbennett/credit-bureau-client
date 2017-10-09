@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
-import { push } from 'react-router-redux';
+import { Link } from 'react-router-dom';
 
 class BureauDataWidget extends Component {
   renderIcon() {
@@ -17,33 +17,26 @@ class BureauDataWidget extends Component {
     );
   }
 
-  getPosition = i => {
-    if (i % 2 === 0) {
-      return 'left';
-    }
-
-    return 'right';
+  renderTitle = (name, id) => {
+    return <Link to={`/organizations/${id}`}>{name}</Link>;
   };
 
   renderMfiCards = () => {
     const { orgList } = this.props;
 
     return orgList.map((org, i) => {
-      const name = org.orgName;
-      const country = org.country;
-      const id = org.orgId;
-      const loans = org.totalSuccessfulLoans;
-      const position = this.getPosition(i);
+      const { country, orgName, orgId, totalSuccessfulLoans } = org;
+      const id = orgId.toString();
 
       return (
-        <Card className={'org-index-' + position} key={i} raise={true}>
+        <Card className="org-index" key={i} raise={true}>
           <CardTitle
             className="org-index__title"
-            title={name}
+            title={this.renderTitle(orgName, id)}
             subtitle={country}
           />
           <CardText className="org-index__data">
-            {'Total Successful Payments: ' + loans}
+            {'Total Successful Payments: ' + totalSuccessfulLoans}
           </CardText>
         </Card>
       );

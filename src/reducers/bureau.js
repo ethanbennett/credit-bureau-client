@@ -5,6 +5,9 @@ import {
   FETCH_ORG_DATA__FAILURE,
   FETCH_ORG_DATA__REQUEST,
   FETCH_ORG_DATA__SUCCESS,
+  FETCH_QUARTERLY_REPORT__SUCCESS,
+  FETCH_QUARTERLY_REPORT__FAILURE,
+  FETCH_QUARTERLY_REPORT__REQUEST,
   CREATE_ORG__FAILURE,
   CREATE_ORG__REQUEST,
   CREATE_ORG__SUCCESS,
@@ -42,15 +45,16 @@ import {
 } from '../utils/formatBlockchainData';
 
 const initialState = {
-  clientData: [],
+  clientData: {},
   clientList: [],
   error: '',
   loans: [],
-  orgData: [],
+  orgData: {},
   orgList: [],
   proposals: [],
   requesting: false,
   transactionHash: '',
+  quarterlyReport: {},
 };
 
 export default function bureau(state = initialState, action) {
@@ -154,6 +158,16 @@ export default function bureau(state = initialState, action) {
         ...state,
         requesting: false,
         transactionHash: action.transactionHash,
+      };
+    case FETCH_QUARTERLY_REPORT__FAILURE:
+      return { ...state, requesting: false, error: action.error };
+    case FETCH_QUARTERLY_REPORT__REQUEST:
+      return { ...state, requesting: true };
+    case FETCH_QUARTERLY_REPORT__SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        report: action.report,
       };
     default:
       return state;

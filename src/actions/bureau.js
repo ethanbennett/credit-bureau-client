@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import Bureau from '../services/Bureau';
+import { formatOrgDetails } from '../utils/formatBlockchainData';
 
 export function getOrgList() {
   return async dispatch => {
@@ -31,8 +32,12 @@ export function getOrgData(orgId) {
     dispatch(getOrgDataRequest());
 
     try {
-      const orgData = await Bureau.getOrgData(orgId);
+      const data = await Bureau.getOrgData(orgId);
+      const orgData = formatOrgDetails(data);
       dispatch(getOrgDataSuccess(orgData));
+      dispatch(getLoanData(orgData.walletAddress));
+      dispatch(getClientListForOrg(orgId));
+      dispatch(getQuarterlyReport(orgData.walletAddress));
     } catch (err) {
       dispatch(getOrgDataFailure(err));
     }
@@ -76,12 +81,12 @@ export function getClientListFailure(err) {
   return { type: types.FETCH_CLIENT_LIST__FAILURE, error: err };
 }
 
-export function getClientListForOrg(orgId) {
+export function getClientListForOrg(orgId, address) {
   return async dispatch => {
     dispatch(getClientListForOrgRequest());
 
     try {
-      const clientList = await Bureau.getClientListForOrg(orgId);
+      const clientList = await Bureau.getClientListForOrg(orgId, address);
       dispatch(getClientListForOrgSuccess(clientList));
     } catch (err) {
       dispatch(getClientListForOrgFailure(err));
@@ -341,7 +346,36 @@ export function createProposalFailure(err) {
 
 export function createProposalSuccess(transactionHash) {
   return {
+    requesting: false,
     type: types.CREATE_PROPOSAL__SUCCESS,
     transactionHash: transactionHash,
+  };
+}
+
+export function getQuarterlyReport(orgAddress) {
+  return async dispatch => {
+    dispatch(getQuarterlyReportRequest());
+
+    try {
+      const report = await Bureau.getQuarterlyReport(orgAddress);
+      dispatch(getQuarterlyReportSuccess(report));
+    } catch (err) {
+      dispatch(getQuarterlyReportFailure(err));
+    }
+  };
+}
+
+export function getQuarterlyReportRequest() {
+  return { type: types.FETCH_QUARTERLY_REPORT__REQUEST };
+}
+
+export function getQuarterlyReportFailure(err) {
+  return { type: types.FETCH_QUARTERLY_REPORT__FAILURE, error: err };
+}
+
+export function getQuarterlyReportSuccess(report) {
+  return {
+    type: types.FETCH_QUARTERLY_REPORT__SUCCESS,
+    report: report,
   };
 }

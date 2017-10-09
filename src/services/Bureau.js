@@ -9,13 +9,14 @@ class Bureau {
   }
 
   async getOrgData(orgId) {
-    await controllerContract.getBasicOrgInfoById(orgId);
-    return await controllerContract.getDetailedOrgInfoById(orgId);
+    const id = parseInt(orgId, 10);
+    const firstResponse = await bureauContract.getOrgInfoById(id);
+    const secondResponse = await controllerContract.getDetailedOrgInfoById(id);
+    return [firstResponse, secondResponse];
   }
 
-  // Need to get org address, that will come from getBasicOrgInfoById
-  async getQuarterlyReport(orgId) {
-    return await orgContract.getQuarterlyReportData();
+  async getQuarterlyReport(orgAddress) {
+    return await orgContract(orgAddress).getQuarterlyReportData();
   }
 
   async getClientList() {
@@ -23,12 +24,11 @@ class Bureau {
   }
 
   async getClientListForOrg(orgId) {
-    // returns "NAME-MM/DD/YYYY"
-    return await orgContract.getClientInfoForOrg(orgId);
+    return await controllerContract.getClientIdsForOrg(parseInt(orgId, 10));
   }
 
   async getClientData(clientId) {
-    return await controllerContract.getClientDetailsById(clientId);
+    return await controllerContract.getIdsForOrg(clientId);
   }
 
   async getAllLoanData(orgOrClientAddress) {

@@ -6,8 +6,9 @@ import ClientWidget from '../components/ClientWidget';
 
 import {
   getOrgData,
-  getAllLoanDataForAddresses,
-  getBasicClientInfoForOrg,
+  getLoanData,
+  getClientListForOrg,
+  getQuarterlyReport,
 } from '../actions/bureau';
 import { renderLoader } from '../utils/renderLoader';
 
@@ -19,12 +20,14 @@ export class OrganizationDetailsPage extends Component {
       dialogVisible: false,
     };
   }
-  componentDidMount = () => {
+
+  componentWillMount = () => {
     const { dispatch, match } = this.props;
-    // dispatch(getOrgData(match.params.id));
-    // dispatch(getAllLoanDataForAddresses(match.params.id));
-    // dispatch(getBasicClientInfoForOrg(match.params.id));
+    dispatch(getOrgData(match.params.id));
   };
+  // dispatch(getLoanData(walletAddress));
+  // dispatch(getClientListForOrg(match.params.id), walletAddress);
+  // dispatch(getQuarterlyReport(walletAddress));
 
   toggleDialog = () => {
     this.setState({ dialogVisible: !this.state.dialogVisible });
@@ -37,7 +40,12 @@ export class OrganizationDetailsPage extends Component {
     return (
       <div>
         {renderLoader(requesting)};
-        <ClientWidget toggleDialog={this.toggleDialog} />
+        <ClientWidget
+          address={this.props.orgData.walletAddress}
+          dispatch={this.props.dispatch}
+          getClients={getClientListForOrg}
+          toggleDialog={this.toggleDialog}
+        />
         <ClientDialog
           dialogVisible={dialogVisible}
           hideDialog={this.toggleDialog}
@@ -51,7 +59,7 @@ OrganizationDetailsPage.propTypes = {
   clients: PropTypes.array,
   dispatch: PropTypes.func,
   loans: PropTypes.array,
-  orgData: PropTypes.array,
+  orgData: PropTypes.object,
   requesting: PropTypes.bool,
 };
 
