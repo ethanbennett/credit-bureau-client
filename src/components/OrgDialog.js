@@ -4,6 +4,27 @@ import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons/Button';
 
 class OrgDialog extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      orgId: '',
+      name: '',
+      hqAddress: '',
+      country: '',
+      currency: '',
+      orgWallet: '',
+    };
+  }
+
+  handleSubmit = () => {
+    const { createOrg, dispatch } = this.props;
+    const { orgId, name, hqAddress, country, currency, orgWallet } = this.state;
+
+    dispatch(createOrg(orgId, name, hqAddress, country, currency, orgWallet));
+    this.props.hideDialog();
+  };
+
   render() {
     const { dialogVisible, hideDialog } = this.props;
 
@@ -14,18 +35,37 @@ class OrgDialog extends Component {
         onHide={hideDialog}
         title="Add a New MFI"
       >
-        <TextField id="simple-action-dialog-field" label="ID" />
-        <TextField id="simple-action-dialog-field" label="Name" />
-        <TextField id="simple-action-dialog-field" label="Physical Address" />
-        <TextField id="simple-action-dialog-field" label="Wallet Address" />
-        <TextField id="simple-action-dialog-field" label="Country" />
-        <TextField id="simple-action-dialog-field" label="Currency" />
+        <TextField
+          id="simple-action-dialog-field"
+          label="ID"
+          onChange={id => this.setState({ orgId: id })}
+        />
+        <TextField
+          id="simple-action-dialog-field"
+          label="Name"
+          onChange={name => this.setState({ name: name })}
+        />
+        <TextField
+          id="simple-action-dialog-field"
+          label="Wallet Address"
+          onChange={wallet => this.setState({ orgWallet: wallet })}
+        />
+        <TextField
+          id="simple-action-dialog-field"
+          label="Country"
+          onChange={country => this.setState({ country: country })}
+        />
+        <TextField
+          id="simple-action-dialog-field"
+          label="Currency"
+          onChange={currency => this.setState({ currency: currency })}
+        />
         <div className="btn-container">
           <Button id="cancel-btn" label="CANCEL" onClick={hideDialog} flat />
           <Button
             id="submit-btn"
             label="SUBMIT"
-            onClick={hideDialog}
+            onClick={this.handleSubmit}
             primary
             raised
             type="submit"

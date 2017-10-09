@@ -21,9 +21,9 @@ export class BureauPage extends Component {
   }
 
   componentDidMount = () => {
-    const { dispatch, match } = this.props;
-    // dispatch(getOrgList());
-    // dispatch(getProposals());
+    const { dispatch } = this.props;
+    dispatch(getOrgList());
+    dispatch(getProposals());
   };
 
   toggleMfiDialog = () => {
@@ -48,7 +48,9 @@ export class BureauPage extends Component {
           showDialog={this.toggleProposalDialog}
         />
         <OrgDialog
+          createOrg={createOrg}
           dialogVisible={mfiDialogVisible}
+          dispatch={this.props.dispatch}
           hideDialog={this.toggleMfiDialog}
         />
         <ProposalDialog

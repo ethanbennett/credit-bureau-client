@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ClientWidget from '../components/ClientWidget';
 import ClientDialog from '../components/ClientDialog';
 
-import { createClient } from '../actions/bureau';
+import { getClientList, createClient } from '../actions/bureau';
 import { renderLoader } from '../utils/renderLoader';
 
 export class ClientsPage extends Component {
@@ -15,6 +15,10 @@ export class ClientsPage extends Component {
       dialogVisible: false,
     };
   }
+
+  componentDidMount = () => {
+    this.props.dispatch(getClientList());
+  };
 
   toggleDialog = () => {
     this.setState({ dialogVisible: !this.state.dialogVisible });
@@ -29,7 +33,9 @@ export class ClientsPage extends Component {
         {renderLoader(requesting)}
         <ClientWidget toggleDialog={this.toggleDialog} />
         <ClientDialog
+          createClient={createClient}
           dialogVisible={dialogVisible}
+          dispatch={this.props.dispatch}
           hideDialog={this.toggleDialog}
         />
       </div>

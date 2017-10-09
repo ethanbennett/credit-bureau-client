@@ -36,6 +36,10 @@ import {
   DECREASE_VOTE__REQUEST,
   DECREASE_VOTE__SUCCESS,
 } from '../actions/actionTypes';
+import {
+  formatBasicOrgObjects,
+  formatProposalObjects,
+} from '../utils/formatBlockchainData';
 
 const initialState = {
   clientData: [],
@@ -56,7 +60,11 @@ export default function bureau(state = initialState, action) {
     case FETCH_ORG_LIST__REQUEST:
       return { ...state, requesting: true };
     case FETCH_ORG_LIST__SUCCESS:
-      return { ...state, requesting: false, orgList: action.orgList };
+      return {
+        ...state,
+        requesting: false,
+        orgList: formatBasicOrgObjects(action.orgList),
+      };
     case FETCH_ORG_DATA__FAILURE:
       return { ...state, requesting: false };
     case FETCH_ORG_DATA__REQUEST:
@@ -92,7 +100,11 @@ export default function bureau(state = initialState, action) {
     case FETCH_PROPOSALS__REQUEST:
       return { ...state, requesting: true };
     case FETCH_PROPOSALS__SUCCESS:
-      return { ...state, requesting: false, proposals: action.proposals };
+      return {
+        ...state,
+        requesting: false,
+        proposals: formatProposalObjects(action.proposals),
+      };
     case CREATE_PROPOSAL__FAILURE:
       return { ...state, requesting: false, error: action.error };
     case CREATE_PROPOSAL__REQUEST:

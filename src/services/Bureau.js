@@ -4,12 +4,6 @@ import { orgContract } from '../ethereum/orgContract';
 
 class Bureau {
   async getOrgList() {
-    // Returns the following arrays:
-    // Org ID
-    // Org Name
-    // Country
-    // Number of clients
-    // Total loans
     // Total successful loans (successful/total)
     return await bureauContract.getAllOrgInfo();
   }
@@ -21,11 +15,10 @@ class Bureau {
 
   // Need to get org address, that will come from getBasicOrgInfoById
   async getQuarterlyReport(orgId) {
-    return await orgContract.getQuarterlyReportData()
+    return await orgContract.getQuarterlyReportData();
   }
 
   async getClientList() {
-    // returns "NAME-BIRTHDAY"
     return await controllerContract.getAllClientIds();
   }
 
@@ -46,10 +39,6 @@ class Bureau {
   }
 
   async getProposals() {
-    // returns 3 arrays:
-    // Name
-    // Votes for
-    // Votes against
     return await controllerContract.getBallotData();
   }
 
@@ -85,7 +74,6 @@ class Bureau {
   }
 
   async createOrg(id, name, hqAddress, country, currency, orgWallet) {
-    // bureauId is arbitrary and passed here as a param
     return await bureauContract.addOrgToBureau(
       id,
       name,
