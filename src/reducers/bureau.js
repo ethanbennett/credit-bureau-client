@@ -41,6 +41,7 @@ import {
 } from '../actions/actionTypes';
 import {
   formatBasicOrgObjects,
+  formatClientObjects,
   formatProposalObjects,
 } from '../utils/formatBlockchainData';
 
@@ -80,13 +81,21 @@ export default function bureau(state = initialState, action) {
     case FETCH_CLIENT_LIST__REQUEST:
       return { ...state, requesting: true };
     case FETCH_CLIENT_LIST__SUCCESS:
-      return { ...state, requesting: false, clientList: action.clientList };
+      return {
+        ...state,
+        requesting: false,
+        clientList: formatClientObjects(action.clientList),
+      };
     case FETCH_CLIENT_LIST_FOR_ORG__FAILURE:
       return { ...state, requesting: false, error: action.error };
     case FETCH_CLIENT_LIST_FOR_ORG__REQUEST:
       return { ...state, requesting: true };
     case FETCH_CLIENT_LIST_FOR_ORG__SUCCESS:
-      return { ...state, requesting: false, clientList: action.clientList };
+      return {
+        ...state,
+        requesting: false,
+        clientList: formatClientObjects(action.clientList),
+      };
     case FETCH_CLIENT_DATA__FAILURE:
       return { ...state, requesting: false, error: action.error };
     case FETCH_CLIENT_DATA__REQUEST:

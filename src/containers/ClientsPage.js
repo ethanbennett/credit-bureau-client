@@ -31,7 +31,10 @@ export class ClientsPage extends Component {
     return (
       <div>
         {renderLoader(requesting)}
-        <ClientWidget toggleDialog={this.toggleDialog} />
+        <ClientWidget
+          toggleDialog={this.toggleDialog}
+          clientList={this.props.clientList}
+        />
         <ClientDialog
           createClient={createClient}
           dialogVisible={dialogVisible}

@@ -7,6 +7,24 @@ import Loader from 'react-loader';
 import { renderIcon } from '../utils/renderIcon';
 
 class ClientWidget extends Component {
+  renderClientCards = () => {
+    const { clientList } = this.props;
+
+    return clientList.map((client, i) => {
+      const { id, name, birthday } = client;
+
+      return (
+        <Card className="org-index" key={i} raise={true}>
+          <CardTitle
+            className="org-index__title"
+            title={this.renderTitle(name, id)}
+          />
+          <CardText className="org-index__data">{birthday}</CardText>
+        </Card>
+      );
+    });
+  };
+
   render() {
     const { toggleDialog, address } = this.props;
 
@@ -17,10 +35,7 @@ class ClientWidget extends Component {
           subtitle="All clients for this organization"
           children={renderIcon(toggleDialog)}
         />
-        <CardText className="widget-body__text">
-          Here's where every client will be displayed with a link to their
-          profile pages
-        </CardText>
+        {this.renderClientCards()}
       </Card>
     );
   }
