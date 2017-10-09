@@ -4,9 +4,17 @@
   margin: 16px;
 }
 
+#simple-action-dialog {
+  overflow: scroll;
+}
+
 #root {
   background: linear-gradient(to bottom right,#455a64, #eceff1);
   padding-bottom: 700px;
+}
+
+.org-index__data {
+  font-family: "Droid Sans";
 }
 
 a {
@@ -22,6 +30,16 @@ td {
 .md-text--secondary {
   font-family: "Droid Sans" !important;
   color: #546e7a !important;
+}
+
+.org-widget-icon {
+  margin-top: -35px !important;
+}
+
+.widget-title {
+  h2 {
+    color: #546e7a !important;
+  }
 }
 
 .widget-body__text {

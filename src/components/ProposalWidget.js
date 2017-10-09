@@ -43,14 +43,15 @@ class ProposalWidget extends Component {
   render() {
     return (
       <div>
-        <Card className="widget__card">
+        <Card className="widget__card" tableCard={true}>
           <CardTitle
+            className="widget-title"
             children={renderIcon(this.props.showDialog)}
             subtitle="Blockchain-Based Governance for the Bureau"
             title="Proposals"
           />
-          <CardText>
-            <div className="widget-body__text">{this.renderProposals()}</div>
+          <CardText className="widget-body__text">
+            {this.renderProposals()}
           </CardText>
         </Card>
       </div>

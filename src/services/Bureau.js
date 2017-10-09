@@ -1,35 +1,45 @@
 import { controllerContract } from '../ethereum/controllerContract';
 import { bureauContract } from '../ethereum/bureauContract';
+import { orgContract } from '../ethereum/orgContract';
 
 class Bureau {
   async getOrgList() {
-    return await controllerContract.getAllOrgInfo();
+    // Total successful loans (successful/total)
+    return await bureauContract.getAllOrgInfo();
   }
 
   async getOrgData(orgId) {
-    return await controllerContract.getDetailedOrgInfo(orgId);
+    await controllerContract.getBasicOrgInfoById(orgId);
+    return await controllerContract.getDetailedOrgInfoById(orgId);
+  }
+
+  // Need to get org address, that will come from getBasicOrgInfoById
+  async getQuarterlyReport(orgId) {
+    return await orgContract.getQuarterlyReportData();
   }
 
   async getClientList() {
-    return await controllerContract.getAllClientData();
+    return await controllerContract.getAllClientIds();
   }
 
   async getClientListForOrg(orgId) {
-    return await controllerContract.getBasicClientInfoForOrg(orgId);
+    // returns "NAME-MM/DD/YYYY"
+    return await orgContract.getClientInfoForOrg(orgId);
   }
 
   async getClientData(clientId) {
-    return await controllerContract.getDetailedClientInfo(clientId);
+    return await controllerContract.getClientDetailsById(clientId);
   }
 
   async getAllLoanData(orgOrClientAddress) {
+    // Get client address from getClientData(clientId)
     return await controllerContract.getAllLoanDataForAddresses(
       orgOrClientAddress
     );
   }
 
   async getProposals() {
-    return await controllerContract.getAllProposalData();
+    return await controllerContract.getBallotData();
   }
 
   async createClient(
@@ -75,20 +85,21 @@ class Bureau {
     );
   }
 
+  // proposalId is the index of a proposal from getProposalData
   async increaseVote(proposalId) {
-    return await controllerContract.increaseVote(proposalId, {
+    return await controllerContract.voteFor(proposalId, {
       gas: 4000000,
     });
   }
 
   async decreaseVote(proposalId) {
-    return await controllerContract.decreaseVote(proposalId, {
+    return await controllerContract.voteAgainst(proposalId, {
       gas: 4000000,
     });
   }
 
   async createProposal(name, description) {
-    return await bureauContract.createProposal(name, description, {
+    return await controllerContract.addProposal(name, {
       gas: 4000000,
     });
   }

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
+import { push } from 'react-router-redux';
 
 class BureauDataWidget extends Component {
   renderIcon() {
     return (
       <i
-        className="material-icons"
+        className="material-icons org-widget-icon"
         id="widget-icon"
         onClick={this.props.showDialog}
       >
@@ -16,18 +17,34 @@ class BureauDataWidget extends Component {
     );
   }
 
+  getPosition = i => {
+    if (i % 2 === 0) {
+      return 'left';
+    }
+
+    return 'right';
+  };
+
   renderMfiCards = () => {
     const { orgList } = this.props;
 
-    orgList.map((org, i) => {
+    return orgList.map((org, i) => {
+      const name = org.orgName;
+      const country = org.country;
+      const id = org.orgId;
+      const loans = org.totalSuccessfulLoans;
+      const position = this.getPosition(i);
+
       return (
-        <Card className="org-index" key={i}>
+        <Card className={'org-index-' + position} key={i} raise={true}>
           <CardTitle
             className="org-index__title"
-            title="Org Name Placeholder"
-            avatar="http://google.com/placeholder"
+            title={name}
+            subtitle={country}
           />
-          <CardText className="org-index__data">Placeholder data</CardText>
+          <CardText className="org-index__data">
+            {'Total Successful Payments: ' + loans}
+          </CardText>
         </Card>
       );
     });
@@ -36,15 +53,13 @@ class BureauDataWidget extends Component {
   render() {
     return (
       <div>
-        <Card className="widget__card">
+        <Card className="widget__card org-widget">
           <CardTitle
-            title="Bureau Data"
-            subtitle="Overall MFI data"
+            className="widget-title"
+            title="All Organizations"
             children={this.renderIcon()}
           />
-          <CardText>
-            <div className="widget-body__text">{this.renderMfiCards()}</div>
-          </CardText>
+          <Card>{this.renderMfiCards()}</Card>
         </Card>
       </div>
     );
