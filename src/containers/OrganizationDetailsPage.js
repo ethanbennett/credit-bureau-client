@@ -21,13 +21,10 @@ export class OrganizationDetailsPage extends Component {
     };
   }
 
-  componentWillMount = () => {
+  componentWillMount = async () => {
     const { dispatch, match } = this.props;
-    dispatch(getOrgData(match.params.id));
+    await dispatch(getOrgData(match.params.id));
   };
-  // dispatch(getLoanData(walletAddress));
-  // dispatch(getClientListForOrg(match.params.id), walletAddress);
-  // dispatch(getQuarterlyReport(walletAddress));
 
   toggleDialog = () => {
     this.setState({ dialogVisible: !this.state.dialogVisible });
@@ -43,7 +40,7 @@ export class OrganizationDetailsPage extends Component {
         <ClientWidget
           address={this.props.orgData.walletAddress}
           dispatch={this.props.dispatch}
-          getClients={getClientListForOrg}
+          clientList={this.props.clientList}
           toggleDialog={this.toggleDialog}
         />
         <ClientDialog
@@ -65,7 +62,7 @@ OrganizationDetailsPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    clients: state.bureau.clientList,
+    clientList: state.bureau.clientList,
     loans: state.bureau.loans,
     orgData: state.bureau.orgData,
     requesting: state.bureau.requesting,
