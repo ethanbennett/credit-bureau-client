@@ -28,7 +28,9 @@ class Bureau {
   }
 
   async getClientData(clientId) {
-    return await controllerContract.getIdsForOrg(clientId);
+    return await controllerContract.getClientDetailsById(
+      parseInt(clientId, 10)
+    );
   }
 
   async getAllLoanData(orgOrClientAddress) {

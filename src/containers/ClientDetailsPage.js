@@ -11,8 +11,7 @@ import { getClientData, getLoanData } from '../actions/bureau';
 export class ClientDetailsPage extends Component {
   componentDidMount = () => {
     const { dispatch, match } = this.props;
-    // dispatch(getClientData(match.params.id));
-    // dispatch(getLoanData(this.props.clientData.address));
+    dispatch(getClientData(match.params.id));
   };
 
   render() {
@@ -23,7 +22,7 @@ export class ClientDetailsPage extends Component {
 }
 
 ClientDetailsPage.propTypes = {
-  clientData: PropTypes.array,
+  clientData: PropTypes.object,
   loans: PropTypes.array,
   requesting: PropTypes.bool,
 };

@@ -1,6 +1,9 @@
 import * as types from './actionTypes';
 import Bureau from '../services/Bureau';
-import { formatOrgDetails } from '../utils/formatBlockchainData';
+import {
+  formatOrgDetails,
+  formatClientDetails,
+} from '../utils/formatBlockchainData';
 
 export function getOrgList() {
   return async dispatch => {
@@ -111,8 +114,10 @@ export function getClientData(clientId) {
     dispatch(getClientDataRequest());
 
     try {
-      const clientData = await Bureau.getClientData(clientId);
+      const data = await Bureau.getClientData(clientId);
+      const clientData = formatClientDetails(data);
       dispatch(getClientDataSuccess(clientData));
+      dispatch(getLoanData(clientData.contractAddress));
     } catch (err) {
       dispatch(getClientDataFailure(err));
     }

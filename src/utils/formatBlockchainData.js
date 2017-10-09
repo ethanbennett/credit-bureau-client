@@ -62,3 +62,21 @@ export function formatOrgDetails(blockchainResponse) {
     totalPayments: secondResponse[3],
   };
 }
+
+export function formatClientDetails(blockchainResponse) {
+  const splitData = ethereumClient.toAscii(blockchainResponse[0]).split('-');
+
+  return {
+    id: ethereumClient.toAscii(blockchainResponse[0]),
+    contractAddress: blockchainResponse[1],
+    name: splitData[0],
+    birthday: splitData[1],
+    homeAddress: ethereumClient.toAscii(blockchainResponse[2]),
+    gender: blockchainResponse[3],
+    phoneNumber: blockchainResponse[4],
+    married: blockchainResponse[5],
+    numberOfPayments: blockchainResponse[6],
+    successfulPayments: blockchainResponse[7],
+    totalDeposits: blockchainResponse[8],
+  };
+}
