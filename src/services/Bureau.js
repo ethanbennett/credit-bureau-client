@@ -55,7 +55,7 @@ class Bureau {
     education,
     householdSize,
     dependents,
-    marritalStatus,
+    maritalStatus,
     phoneNumber
   ) {
     return await bureauContract.createClient(
@@ -69,7 +69,7 @@ class Bureau {
       education,
       householdSize,
       dependents,
-      marritalStatus,
+      maritalStatus,
       phoneNumber,
       { gas: 4000000 }
     );

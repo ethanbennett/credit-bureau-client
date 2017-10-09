@@ -15,9 +15,7 @@ export class ClientDetailsPage extends Component {
   };
 
   render() {
-    const { requesting } = this.props;
-
-    return <Card>{renderLoader(requesting)}</Card>;
+    return <Card />;
   }
 }
 

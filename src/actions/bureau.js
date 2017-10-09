@@ -197,7 +197,7 @@ export function createClient(
   education,
   householdSize,
   dependents,
-  marritalStatus,
+  maritalStatus,
   phoneNumber
 ) {
   return async dispatch => {
@@ -215,7 +215,7 @@ export function createClient(
         education,
         householdSize,
         dependents,
-        marritalStatus,
+        maritalStatus,
         phoneNumber
       );
       dispatch(createClientSuccess(transactionHash));

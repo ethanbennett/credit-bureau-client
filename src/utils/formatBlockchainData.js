@@ -40,8 +40,8 @@ export function formatClientObjects(blockchainResponse) {
 
     return {
       id: ethereumClient.toAscii(clientInfo),
-      name: ethereumClient.toAscii(splitData[0]),
-      birthday: ethereumClient.toAscii(splitData[1]),
+      name: splitData[0],
+      birthday: splitData[1],
     };
   });
 }

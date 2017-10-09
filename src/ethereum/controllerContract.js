@@ -130,7 +130,7 @@ const controllerContractABI = [
   { payable: true, type: 'fallback' },
 ];
 
-const controllerContractAddress = '0x8ba4c6ae4e510a1a8a8cbd3ea192f39a6a17c585';
+const controllerContractAddress = '0x75a7c6106dd6748dd60f38e46bd1d2ddb08721b8';
 
 export const controllerContract = ethereumClient.eth
   .contract(controllerContractABI)

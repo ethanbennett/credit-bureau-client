@@ -8,7 +8,7 @@ class ClientDialog extends Component {
     super(props);
 
     this.state = {
-      clientWallet: '',
+      clientWallet: '0x0',
       name: '',
       homeAddress: '',
       birthday: '',
@@ -17,13 +17,13 @@ class ClientDialog extends Component {
       education: 0,
       householdSize: 0,
       dependents: 0,
-      marritalStatus: false,
+      maritalStatus: false,
       phoneNumber: 0,
     };
   }
 
   handleSubmit = () => {
-    const { dispatch, createClient } = this.props;
+    const { dispatch } = this.props;
     const {
       clientWallet,
       name,
@@ -33,14 +33,14 @@ class ClientDialog extends Component {
       gender,
       education,
       householdSize,
-      dependends,
-      marritalStatus,
+      dependents,
+      maritalStatus,
       phoneNumber,
     } = this.state;
     const id = name + '-' + birthday;
 
     dispatch(
-      createClient(
+      this.props.createClient(
         id,
         clientWallet,
         name,
@@ -50,8 +50,8 @@ class ClientDialog extends Component {
         gender,
         education,
         householdSize,
-        dependends,
-        marritalStatus,
+        dependents,
+        maritalStatus,
         phoneNumber
       )
     );

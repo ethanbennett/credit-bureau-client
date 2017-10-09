@@ -16,8 +16,8 @@ export class ClientsPage extends Component {
     };
   }
 
-  componentDidMount = () => {
-    this.props.dispatch(getClientList());
+  componentDidMount = async () => {
+    await this.props.dispatch(getClientList());
   };
 
   toggleDialog = () => {
@@ -30,7 +30,6 @@ export class ClientsPage extends Component {
 
     return (
       <div>
-        {renderLoader(requesting)}
         <ClientWidget
           toggleDialog={this.toggleDialog}
           clientList={this.props.clientList}
