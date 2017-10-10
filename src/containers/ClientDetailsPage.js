@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
 import { renderLoader } from '../utils/renderLoader';
 
 import { getClientData, getLoanData } from '../actions/bureau';
+import ClientDetailsWidget from '../components/ClientDetailsWidget';
 
 export class ClientDetailsPage extends Component {
   componentDidMount = () => {
@@ -17,7 +15,7 @@ export class ClientDetailsPage extends Component {
   };
 
   render() {
-    return <Card />;
+    return <ClientDetailsWidget clientData={this.props.clientData} />;
   }
 }
 

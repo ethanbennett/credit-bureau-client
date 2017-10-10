@@ -18,7 +18,11 @@ class BureauDataWidget extends Component {
   }
 
   renderTitle = (name, id) => {
-    return <Link to={`/organizations/${id}`}>{name}</Link>;
+    return (
+      <Link className="widget-link" to={`/organizations/${id}`}>
+        {name}
+      </Link>
+    );
   };
 
   renderMfiCards = () => {

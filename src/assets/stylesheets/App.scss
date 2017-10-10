@@ -32,9 +32,11 @@ td {
   margin-top: -35px !important;
 }
 
-.widget-title {
-  h2 {
-    color: #546e7a !important;
+.widget-link {
+  color: black;
+
+  &:hover {
+    color: #ff3b3f;
   }
 }
 
@@ -42,6 +44,21 @@ td {
   color: #546e7a;
   font-family: "Droid Sans";
   font-weight: 400;
+}
+
+#vote {
+  float: right;
+  margin-top: -30px;  
+}
+
+#vote-against {
+  float: right;
+  margin-left: 11px;
+  margin-top: -30px;
+}
+
+p {
+  font-family: "Droid Sans" !important;
 }
 
 .md-card-title--title {

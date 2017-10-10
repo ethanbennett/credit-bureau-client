@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import BureauDataWidget from '../components/BureauDataWidget';
 import OrgDialog from '../components/OrgDialog';
+import { createOrg, getOrgList } from '../actions/bureau';
 
 import { renderLoader } from '../utils/renderLoader';
 
@@ -15,6 +16,11 @@ export class OrganizationsPage extends Component {
       dialogVisible: false,
     };
   }
+
+  componentDidMount = () => {
+    const { dispatch } = this.props;
+    dispatch(getOrgList());
+  };
 
   toggleDialog = () => {
     this.setState({ dialogVisible: !this.state.dialogVisible });
@@ -29,6 +35,8 @@ export class OrganizationsPage extends Component {
         {renderLoader(requesting)}
         <BureauDataWidget orgList={orgList} showDialog={this.toggleDialog} />
         <OrgDialog
+          createOrg={createOrg}
+          dispatch={this.props.dispatch}
           dialogVisible={dialogVisible}
           hideDialog={this.toggleDialog}
         />

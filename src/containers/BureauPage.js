@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Card from 'react-md/lib/Cards/Card';
+import CardTitle from 'react-md/lib/Cards/CardTitle';
+import CardText from 'react-md/lib/Cards/CardText';
 
 import BureauDataWidget from '../components/BureauDataWidget';
 import ProposalWidget from '../components/ProposalWidget';
@@ -46,17 +49,23 @@ export class BureauPage extends Component {
     return (
       <div>
         {renderLoader(requesting)}
-        <BureauDataWidget orgList={orgList} showDialog={this.toggleMfiDialog} />
+        <Card className="widget__card">
+          <CardTitle title="Welcome to the Future of Credit" />
+          <CardText>
+            <p>
+              All the data in this app is hosted on the blockchain, so it's
+              immutable, easy to share, and failure-resistant. It also allows
+              for participating organizations to govern the bureau in
+              decentralized and democratic ways. Don't forget, though: you won't
+              see your new data on the page until the transaction containing
+              your update has been mined (approximately 30 seconds).
+            </p>
+          </CardText>
+        </Card>
         <ProposalWidget
           dispatch={this.props.dispatch}
           proposals={proposals}
           showDialog={this.toggleProposalDialog}
-        />
-        <OrgDialog
-          createOrg={createOrg}
-          dialogVisible={mfiDialogVisible}
-          dispatch={this.props.dispatch}
-          hideDialog={this.toggleMfiDialog}
         />
         <ProposalDialog
           dispatch={this.props.dispatch}

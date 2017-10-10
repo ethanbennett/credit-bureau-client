@@ -8,7 +8,11 @@ import { renderIcon } from '../utils/renderIcon';
 
 class ClientWidget extends Component {
   renderTitle = (name, id) => {
-    return <Link to={`/clients/${id}`}>{name}</Link>;
+    return (
+      <Link className="widget-link" to={`/clients/${id}`}>
+        {name}
+      </Link>
+    );
   };
 
   renderClientCards = () => {
@@ -17,6 +21,7 @@ class ClientWidget extends Component {
     if (clientList.length > 0) {
       return clientList.map((client, i) => {
         const { id, name, birthday } = client;
+        const splitBirthday = birthday.split('');
 
         return (
           <Card className="org-index" key={i} raise={true}>
@@ -24,7 +29,18 @@ class ClientWidget extends Component {
               className="org-index__title"
               title={this.renderTitle(name, id)}
             />
-            <CardText className="org-index__data">{birthday}</CardText>
+            <CardText className="org-index__data">
+              {splitBirthday[0] +
+                splitBirthday[1] +
+                '/' +
+                splitBirthday[2] +
+                splitBirthday[3] +
+                '/' +
+                splitBirthday[4] +
+                splitBirthday[5] +
+                splitBirthday[6] +
+                splitBirthday[7]}
+            </CardText>
           </Card>
         );
       });

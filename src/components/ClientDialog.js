@@ -86,7 +86,7 @@ class ClientDialog extends Component {
         />
         <TextField
           id="simple-action-dialog-field"
-          label="Birthday (mm/dd/yyyy)"
+          label="Birthday (mmddyyyy: no punctuation, please!)"
           onChange={birthday => this.setState({ birthday: birthday })}
         />
         <TextField

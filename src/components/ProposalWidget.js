@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
+import Button from 'react-md/lib/Buttons/Button';
 
 import { decreaseVote, increaseVote } from '../actions/bureau';
 import { renderIcon } from '../utils/renderIcon';
@@ -22,27 +23,31 @@ class ProposalWidget extends Component {
               'Votes For: ' + votesFor + ' || Votes Against ' + votesAgainst
             }
           />
-          <CardText className="org-index__data">{this.renderVoting()}</CardText>
+          <CardText className="org-index__data">
+            {this.renderVoting(i)}
+          </CardText>
         </Card>
       );
     });
   };
 
-  renderVoting = () => {
+  renderVoting = i => {
     return (
       <div>
-        <div
-          className="vote"
-          onClick={() => this.props.dispatch(increaseVote())}
-        >
-          Vote Up
-        </div>
-        <div
-          className="vote"
-          onClick={() => this.props.dispatch(decreaseVote())}
-        >
-          Vote Down
-        </div>
+        <Button
+          id="vote-against"
+          label="Vote Against This Proposal"
+          primary
+          raised
+          onClick={() => this.props.dispatch(decreaseVote(i))}
+        />
+        <Button
+          id="vote"
+          label="Vote For This Proposal"
+          primary
+          raised
+          onClick={() => this.props.dispatch(increaseVote(i))}
+        />
       </div>
     );
   };
