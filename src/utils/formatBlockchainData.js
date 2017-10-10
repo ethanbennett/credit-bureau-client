@@ -27,7 +27,7 @@ export function formatProposalObjects(blockchainResponse) {
 
   return names.map((name, i) => {
     return {
-      name: name,
+      name: ethereumClient.toAscii(name),
       votesFor: votesFor[i],
       votesAgainst: votesAgainst[i],
     };

@@ -4,7 +4,6 @@ import { orgContract } from '../ethereum/orgContract';
 
 class Bureau {
   async getOrgList() {
-    // Total successful loans (successful/total)
     return await bureauContract.getAllOrgInfo();
   }
 
@@ -28,13 +27,10 @@ class Bureau {
   }
 
   async getClientData(clientId) {
-    return await controllerContract.getClientDetailsById(
-      parseInt(clientId, 10)
-    );
+    return await controllerContract.getClientDetailsById(clientId);
   }
 
   async getAllLoanData(orgOrClientAddress) {
-    // Get client address from getClientData(clientId)
     return await controllerContract.getAllLoanDataForAddresses(
       orgOrClientAddress
     );
@@ -100,7 +96,7 @@ class Bureau {
     });
   }
 
-  async createProposal(name, description) {
+  async createProposal(name) {
     return await controllerContract.addProposal(name, {
       gas: 4000000,
     });

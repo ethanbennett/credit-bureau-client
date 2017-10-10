@@ -11,7 +11,9 @@ import { getClientData, getLoanData } from '../actions/bureau';
 export class ClientDetailsPage extends Component {
   componentDidMount = () => {
     const { dispatch, match } = this.props;
-    dispatch(getClientData(match.params.id));
+    const id = match.params.id.replace(/%20/g, ' ').toString();
+
+    dispatch(getClientData(id));
   };
 
   render() {

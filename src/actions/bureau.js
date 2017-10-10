@@ -328,12 +328,12 @@ export function decreaseVoteSuccess(transactionHash) {
   };
 }
 
-export function createProposal(id, name) {
+export function createProposal(name) {
   return async dispatch => {
     dispatch(createProposalRequest());
 
     try {
-      const transactionHash = await Bureau.createProposal(id, name);
+      const transactionHash = await Bureau.createProposal(name);
       dispatch(createProposalSuccess(transactionHash));
     } catch (err) {
       dispatch(createProposalFailure());

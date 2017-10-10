@@ -7,7 +7,12 @@ import ProposalWidget from '../components/ProposalWidget';
 import OrgDialog from '../components/OrgDialog';
 import ProposalDialog from '../components/ProposalDialog';
 
-import { createOrg, getOrgList, getProposals } from '../actions/bureau';
+import {
+  createOrg,
+  getOrgList,
+  getProposals,
+  createProposal,
+} from '../actions/bureau';
 import { renderLoader } from '../utils/renderLoader';
 
 export class BureauPage extends Component {
@@ -54,6 +59,8 @@ export class BureauPage extends Component {
           hideDialog={this.toggleMfiDialog}
         />
         <ProposalDialog
+          dispatch={this.props.dispatch}
+          createProposal={createProposal}
           dialogVisible={proposalDialogVisible}
           hideDialog={this.toggleProposalDialog}
         />

@@ -7,52 +7,57 @@ import { decreaseVote, increaseVote } from '../actions/bureau';
 import { renderIcon } from '../utils/renderIcon';
 
 class ProposalWidget extends Component {
-  renderProposalHeader = () => {
-    return (
-      <tr className="proposal-table__header">
-        <td>Placeholder Table Header</td>
-      </tr>
-    );
-  };
-
-  renderProposalRows = () => {
+  renderProposals = () => {
     const { proposals } = this.props;
 
-    proposals.map((proposal, i) => {
+    return proposals.map((proposal, i) => {
+      const { name, votesFor, votesAgainst } = proposal;
+
       return (
-        <tr className="proposal-table__data" key={i}>
-          <td>
-            <p>Placeholder Data</p>
-          </td>
-        </tr>
+        <Card className="org-index" key={i} raise={true}>
+          <CardTitle
+            className="org-index__title"
+            title={name}
+            subtitle={
+              'Votes For: ' + votesFor + ' || Votes Against ' + votesAgainst
+            }
+          />
+          <CardText className="org-index__data">{this.renderVoting()}</CardText>
+        </Card>
       );
     });
   };
 
-  renderProposals = () => {
+  renderVoting = () => {
     return (
-      <table className="proposal-table">
-        <tbody>
-          {this.renderProposalHeader()}
-          {this.renderProposalRows()}
-        </tbody>
-      </table>
+      <div>
+        <div
+          className="vote"
+          onClick={() => this.props.dispatch(increaseVote())}
+        >
+          Vote Up
+        </div>
+        <div
+          className="vote"
+          onClick={() => this.props.dispatch(decreaseVote())}
+        >
+          Vote Down
+        </div>
+      </div>
     );
   };
 
   render() {
     return (
       <div>
-        <Card className="widget__card" tableCard={true}>
+        <Card className="widget__card">
           <CardTitle
             className="widget-title"
             children={renderIcon(this.props.showDialog)}
             subtitle="Blockchain-Based Governance for the Bureau"
             title="Proposals"
           />
-          <CardText className="widget-body__text">
-            {this.renderProposals()}
-          </CardText>
+          {this.renderProposals()}
         </Card>
       </div>
     );

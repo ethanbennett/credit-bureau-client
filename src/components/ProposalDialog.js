@@ -4,6 +4,21 @@ import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons/Button';
 
 class ProposalDialog extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+    };
+  }
+
+  handleSubmit = () => {
+    const { createProposal, dispatch } = this.props;
+
+    dispatch(createProposal(this.state.name));
+    this.props.hideDialog();
+  };
+
   render() {
     const { dialogVisible, hideDialog } = this.props;
 
@@ -14,14 +29,17 @@ class ProposalDialog extends Component {
         onHide={hideDialog}
         title="Add a New Proposal"
       >
-        <TextField id="simple-action-dialog-field" label="Proposal Title" />
-        <TextField id="simple-action-dialog-field" label="Description" />
+        <TextField
+          id="simple-action-dialog-field"
+          label="Proposal Name"
+          onChange={name => this.setState({ name: name })}
+        />
         <div className="btn-container">
           <Button id="cancel-btn" label="CANCEL" onClick={hideDialog} flat />
           <Button
             id="submit-btn"
             label="SUBMIT"
-            onClick={hideDialog}
+            onClick={this.handleSubmit}
             primary
             raised
             type="submit"
