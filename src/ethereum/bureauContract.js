@@ -157,7 +157,7 @@ const bureauContractABI = [
   { payable: true, type: 'fallback' },
 ];
 
-const bureauContractAddress = '0xa0c5fb9992cc0de475f5720e8d94842baf94920e';
+const bureauContractAddress = '0x62c15f803ffb333b7ea7d79b9db16d2d7dbce67c';
 
 export const bureauContract = ethereumClient.eth
   .contract(bureauContractABI)
