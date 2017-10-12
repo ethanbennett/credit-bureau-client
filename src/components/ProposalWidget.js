@@ -20,7 +20,7 @@ class ProposalWidget extends Component {
             className="org-index__title"
             title={name}
             subtitle={
-              'Votes For: ' + votesFor + ' || Votes Against ' + votesAgainst
+              'Votes For: ' + votesFor + ' || Votes Against: ' + votesAgainst
             }
           />
           <CardText className="org-index__data">
