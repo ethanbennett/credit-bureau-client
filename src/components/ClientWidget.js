@@ -48,7 +48,7 @@ class ClientWidget extends Component {
   };
 
   render() {
-    const { toggleDialog, address } = this.props;
+    const { toggleDialog } = this.props;
 
     return (
       <Card className="widget__card">

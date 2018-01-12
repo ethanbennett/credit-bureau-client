@@ -1,7 +1,9 @@
 import Web3 from 'web3';
 
+const { REACT_APP_ETH_URL, REACT_APP_DEFAULT_ACCOUNT } = process.env;
+
 export const ethereumClient = new Web3(
-  new Web3.providers.HttpProvider('https://37d3d7e0.ngrok.io')
+  new Web3.providers.HttpProvider(REACT_APP_ETH_URL)
 );
 
-ethereumClient.eth.defaultAccount = ethereumClient.eth.accounts[0];
+ethereumClient.eth.defaultAccount = REACT_APP_DEFAULT_ACCOUNT;
